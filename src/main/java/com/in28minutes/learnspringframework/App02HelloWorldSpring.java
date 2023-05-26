@@ -15,7 +15,9 @@ public class App02HelloWorldSpring {
         //3: Spring이 관리하는 Bean 검색
         System.out.println(context.getBean("name"));//메서드 이름
 
+        System.out.println(context.getBean("age"));
 
+        System.out.println(context.getBean("person"));
 
 
     }
