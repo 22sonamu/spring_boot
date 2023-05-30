@@ -71,13 +71,13 @@ System.out.println(context.getBean(Person.class));
 ```
 
 ```logcatfilter
-Exception in thread "main" org.springframework.beans.factory.NoUniqueBeanDefinitionException: No qualifying bean of type 'com.in28minutes.learnspringframework.Person' available: expected single matching bean but found 3: person,person2MethodCall,person3Parameters
+Exception in thread "main" org.springframework.beans.factory.NoUniqueBeanDefinitionException: No qualifying bean of type 'com.in28minutes.learnspringframework.helloworld.Person' available: expected single matching bean but found 3: person,person2MethodCall,person3Parameters
 	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveNamedBean(DefaultListableBeanFactory.java:1299)
 	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveBean(DefaultListableBeanFactory.java:484)
 	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBean(DefaultListableBeanFactory.java:339)
 	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBean(DefaultListableBeanFactory.java:332)
 	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1174)
-	at com.in28minutes.learnspringframework.App02HelloWorldSpring.main(App02HelloWorldSpring.java:37)
+	at com.in28minutes.learnspringframework.helloworld.App02HelloWorldSpring.main(App02HelloWorldSpring.java:37)
 ```
 Person class를 Return하는 Bean을 찾으면 , 위와 같은 에러가 발생한다.
 - 해결방법
