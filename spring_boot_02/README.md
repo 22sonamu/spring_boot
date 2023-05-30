@@ -125,4 +125,68 @@ Spring이 객체를 만들게 하려면 어떻게 해야할까?
 
 ---------
 
+1. **@Component**
+- @Component로 등록하면 , 자동으로 Spring Bean 관리 목록에 등록된다.
+_PacManGame.java_
+    ~~~java
+    @Component //Spring이 관리할 Component에 등록 
+    public class PacManGame implements GamingConsole{
+        @Override
+        public void up() {
+            System.out.println("up");
+        }
+    
+        @Override
+        public void down() {
+            System.out.println("down");
+        }
+    
+        @Override
+        public void left() {
+            System.out.println("left");
+        }
+    
+        @Override
+        public void right() {
+            System.out.println("right");
+        }
+    }
+    ~~~
+    
+2. **@ComponentScan("패키지 경로")**
+- "패키지 경로" 에서 @Component로 관리할 Bean에 등록된 객체들을 탐색한다.
+
+    _App03GamingSpringBeans.java_
+    ~~~java
+    @Configuration
+    @ComponentScan("com.in28minutes.learnspringframework.game") 
+    //"com.in28minutes.learnspringframework.game" 에서 컴포넌트를 찾아라
+    public class App03GamingSpringBeans {
+        
+    /*
+    아래의 코드를 @Component + @ComponentScan이 대신해준다.        
+     */
+    //    @Bean 
+    //    public GamingConsole game(){
+    //        var game = new PacManGame();
+    //        return game;
+    //    }
+    
+        @Bean
+        public GameRunner gameRunner(GamingConsole game){ 
+            //@ComponentScan 어노테이션 덕분에 GamingConsole Bean 을 찾을수있다.
+            var gameRunner = new GameRunner(game);
+            return gameRunner;
+        }
+        public static void main(String[] args) {
+    
+            try(var context = new AnnotationConfigApplicationContext(App03GamingSpringBeans.class)){
+                context.getBean(GamingConsole.class).up();
+                context.getBean(GameRunner.class).run();
+            }
+            
+        }
+    }
+    ~~~
+
 ### Q5. Spring이 객체를 생성하게 하는것을 쉽게 해줄까? 어렵게 만들까? 
