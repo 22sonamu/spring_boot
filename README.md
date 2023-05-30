@@ -3,6 +3,29 @@
 ----------
 ### Q1. Spring Container vs Spring Context vs IOC Container vs Application Context ?
 
+------
+
+1. **Spring Container = Spring Context = Spring IOC Container** 
+     
+    - Spring의 Bean List 관리 
+    - Bean의 Lifecycle 관리
+    - Spring Container를 생성하기 위한 Input : 생성한 Class들 ex) Person Class, SpringConfiguration Class
+    - Output : Ready System
+       ```  
+        Ready System
+            - JVM
+                - Spring Context
+                    - Bean List ( ex ) name, age, person, person2.... )
+        ```
+    1. Bean Factory
+        - 기본 Spring Container
+        - 메모리에 심한 제약이 있는 서비스에 사용
+    
+    2. Application Context 
+        - 전문가용 고급 Spring Container
+        - 가장 자주 사용하는 Container
+        - Web Service , Rest API 등등에 사용
+
 
 ### Q2. Java Bean vs Spring Bean?
 
