@@ -1,6 +1,11 @@
-# 1. BEAN
+# 1. BEAN 
 
 ----------
+
+```
+Spring이 관리하는 Java Object
+```
+
 ### Q1. Spring Container vs Spring Context vs IOC Container vs Application Context ?
 
 ------
@@ -28,6 +33,29 @@
 
 
 ### Q2. Java Bean vs Spring Bean?
+
+1. **Java Bean**
+    ```java
+    class JavaBean implements Serializable{ //제약 3. Serializable
+        public JavaBean(){ //제약 1. no-arg constructor
+            
+        }    
+        private String text;
+        private int number;
+        //제약 2. getter / setter (생략)
+        
+   }
+   ```
+    - 제한사항
+      1. no-arg constructor (기본 생성자)
+         - 기본으로 생성되며 , 명시적으로 만들수도있다.
+      2. getter and setter
+      3. Serializable
+2. **Spring Bean**
+   - Spring 프레임워크에서 관리하는 모든 Bean
+
+3. **POJO**
+    - Java의 모든 Object
 
 ### Q3. Bean list는 Spring에서 어떻게 관리되는지?
 
