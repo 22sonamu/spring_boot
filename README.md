@@ -57,8 +57,13 @@ Spring이 관리하는 Java Object
 3. **POJO**
     - Java의 모든 Object
 
-### Q3. Bean list는 Spring에서 어떻게 관리되는지?
+### Q3. Spring에서 사용되는 Bean을 나열하려면 ?
+~~~java
+    var context = new AnnotationConfigApplicationContext(HelloWorldConfiguration.class);
 
+    Arrays.stream(context.getBeanDefinitionNames())
+        .forEach(System.out::println);
+~~~
 ### Q4. 여러가지 Bean이 사용가능하다면 ?
 
 ### Q5. Spring이 객체를 만들기 시작하게하려면?
