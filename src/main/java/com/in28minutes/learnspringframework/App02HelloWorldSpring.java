@@ -19,6 +19,14 @@ public class App02HelloWorldSpring {
 
         System.out.println(context.getBean("person"));
 
+        System.out.println(context.getBean("address2"));
+
+        //이렇게도 접근 가능 , 단 Address로 return하는 Bean이 한개만있어야한다.
+        System.out.println(context.getBean(Address.class));
+
+        System.out.println(context.getBean("person2MethodCall"));
+
+        System.out.println(context.getBean("person3Parameters"));
 
     }
 }
