@@ -1,8 +1,10 @@
 package com.in28minutes.learnspringframework;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.amqp.RabbitConnectionDetails;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 
 record Person(String name, int age, Address address) {
 };
@@ -24,6 +26,7 @@ public class HelloWorldConfiguration { //스프링 설정 파일, Bean 생성 �
     }
 
     @Bean
+    @Primary
     public Person person() {
         return new Person(
                 "Ravi",
@@ -45,7 +48,25 @@ public class HelloWorldConfiguration { //스프링 설정 파일, Bean 생성 �
 
     //Bean 이름 설정 , address로 접근 불가능
     @Bean(name = "address2")
+    @Primary
     public Address address() {
         return new Address("을지로", "서울");
     }
+
+    @Bean(name = "address3")
+    @Qualifier("address3qualifier")
+    public Address address3() {
+        return new Address("을지로3", "서울3");
+    }
+
+    @Bean
+    public Person person4Parameters(String name, int age, Address address) {
+        return new Person(name, age, address);
+    }
+
+    @Bean
+    public Person person5Qualifier(String name, int age, @Qualifier("address3qualifier") Address address) {
+        return new Person(name, age, address);
+    }
+
 }

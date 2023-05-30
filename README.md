@@ -59,12 +59,53 @@ Spring이 관리하는 Java Object
 
 ### Q3. Spring에서 사용되는 Bean을 나열하려면 ?
 ~~~java
-    var context = new AnnotationConfigApplicationContext(HelloWorldConfiguration.class);
+var context = new AnnotationConfigApplicationContext(HelloWorldConfiguration.class);
 
-    Arrays.stream(context.getBeanDefinitionNames())
+Arrays.stream(context.getBeanDefinitionNames())
         .forEach(System.out::println);
 ~~~
 ### Q4. 여러가지 Bean이 사용가능하다면 ?
+
+```java
+System.out.println(context.getBean(Person.class)); 
+```
+
+```logcatfilter
+Exception in thread "main" org.springframework.beans.factory.NoUniqueBeanDefinitionException: No qualifying bean of type 'com.in28minutes.learnspringframework.Person' available: expected single matching bean but found 3: person,person2MethodCall,person3Parameters
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveNamedBean(DefaultListableBeanFactory.java:1299)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveBean(DefaultListableBeanFactory.java:484)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBean(DefaultListableBeanFactory.java:339)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBean(DefaultListableBeanFactory.java:332)
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1174)
+	at com.in28minutes.learnspringframework.App02HelloWorldSpring.main(App02HelloWorldSpring.java:37)
+```
+Person class를 Return하는 Bean을 찾으면 , 위와 같은 에러가 발생한다.
+- 해결방법
+1. **@Primary** : 우선순위 부여
+    ```java
+        @Bean
+        @Primary //Primary 어노테이션
+        public Person person() {
+            return new Person(
+                    "Ravi",
+                    20,
+                    new Address("Main Street", "Seoul")
+            );
+        }
+    ```
+2. **@Qualifier("이름")** 
+    ~~~java
+   @Bean(name = "address3")
+    @Qualifier("address3qualifier")
+    public Address address3() {
+        return new Address("을지로3", "서울3");
+    }
+   
+   @Bean
+    public Person person5Qualifier(String name, int age, @Qualifier("address3qualifier") Address address) {
+        return new Person(name, age, address);
+    }
+   ~~~
 
 ### Q5. Spring이 객체를 만들기 시작하게하려면?
 
