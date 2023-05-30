@@ -18,11 +18,11 @@ public class App03GamingSpringBeans {
 //        return game;
 //    }
 
-    @Bean
-    public GameRunner gameRunner(GamingConsole game){ //@ComponentScan 어노테이션 덕분에 GamingConsole Bean 을 찾을수있따.
-        var gameRunner = new GameRunner(game);
-        return gameRunner;
-    }
+//    @Bean
+//    public GameRunner gameRunner(GamingConsole game){ //@ComponentScan 어노테이션 덕분에 GamingConsole Bean 을 찾을수있따.
+//        var gameRunner = new GameRunner(game);
+//        return gameRunner;
+//    }
     public static void main(String[] args) {
 
         try(var context = new AnnotationConfigApplicationContext(App03GamingSpringBeans.class)){
