@@ -1,5 +1,8 @@
 package com.in28minutes.learnspringframework.game;
 
+import org.springframework.stereotype.Component;
+
+@Component //Spring이 관리할 Component
 public class PacManGame implements GamingConsole{
     @Override
     public void up() {
