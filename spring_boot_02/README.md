@@ -190,3 +190,8 @@ _PacManGame.java_
     ~~~
 
 ### Q5. Spring이 객체를 생성하게 하는것을 쉽게 해줄까? 어렵게 만들까? 
+
+### Q6. Primary vs Qualifier 우선순위
+```
+Qualifier > Primary
+```
