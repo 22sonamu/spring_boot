@@ -1,5 +1,6 @@
 package com.in28minutes.learnspringframework.game;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -10,7 +11,9 @@ public class GameRunner {
 
     // 느슨한 결합 , GameConsole을 implements 한 게임들은 모두 실행 가능하다.
     private GamingConsole game;
-    public GameRunner(GamingConsole game){
+
+    //SuperContraGameQualifier 한정자가 자동 wiring 되어야한다고 작성
+    public GameRunner(@Qualifier("SuperContraGameQualifier") GamingConsole game){
         this.game = game;
     }
 

@@ -1,8 +1,13 @@
 package com.in28minutes.learnspringframework.game;
 
+import org.springframework.context.annotation.Primary;
+import org.springframework.stereotype.Component;
+
+@Component
+@Primary //Component 에도 Primary 적용이 가능하다.
 public class MarioGame implements GamingConsole{
     public void up(){
-        System.out.println("Jump");
+        System.out.println("Jump 마리오");
     }
 
     public void down(){

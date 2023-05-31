@@ -10,29 +10,12 @@ import org.springframework.context.annotation.Configuration;
 @ComponentScan("com.in28minutes.learnspringframework.game") //"com.in28minutes.learnspringframework.game" 에서 컴포넌트를 찾아라
 public class GamingAppLauncherAppliaction {
 
-//    @Bean
-//    public GamingConsole game(){
-//        var game = new PacManGame();
-//        return game;
-//    }
-
-//    @Bean
-//    public GameRunner gameRunner(GamingConsole game){ //@ComponentScan 어노테이션 덕분에 GamingConsole Bean 을 찾을수있따.
-//        var gameRunner = new GameRunner(game);
-//        return gameRunner;
-//    }
     public static void main(String[] args) {
 
         try(var context = new AnnotationConfigApplicationContext(GamingAppLauncherAppliaction.class)){
-            context.getBean(GamingConsole.class).up();
-            context.getBean(GameRunner.class).run();
+            context.getBean(GamingConsole.class).up(); //Primary로 설정된 MarioGame이 출력된다.
+            context.getBean(GameRunner.class).run(); //생성자에 Qualifier로 지정해준 SuperContraGame이 실행된다.
         }
 
-        //var game = new MarioGame();
-        //var game = new SuperContraGame();
-//        var game = new PacManGame();
-//        var gameRunner = new GameRunner(game);
-//
-//        gameRunner.run();
     }
 }
