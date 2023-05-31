@@ -17,28 +17,35 @@ class YourBusinessClass{
 
     Dependency2 dependency2;
 
-    public Dependency1 getDependency1() {
-        return dependency1;
-    }
-
-    @Autowired //Setter 에 Autowired 작성해도
-    //@Autowired
-    //Dependency1 dependency1 이랑 같은 효과 ( 의존성 주입 )
-    public void setDependency1(Dependency1 dependency1) {
-        System.out.println("Setter Injection - setDependency1");
+    //Autowired //Spring이 자동으로 생성자를 사용해서 객체를 만든다. //Spring 팀이 가장 추천하는 의존성 주입
+    public YourBusinessClass(Dependency1 dependency1, Dependency2 dependency2) {
+        System.out.println("Constructor Injection - YourBusinessClass");
         this.dependency1 = dependency1;
-    }
-
-
-    public Dependency2 getDependency2() {
-        return dependency2;
-    }
-
-    @Autowired
-    public void setDependency2(Dependency2 dependency2) {
-        System.out.println("Setter Injection - setDependency2");
         this.dependency2 = dependency2;
     }
+
+//    public Dependency1 getDependency1() {
+//        return dependency1;
+//    }
+//
+//    @Autowired //Setter 에 Autowired 작성해도
+//    //@Autowired
+//    //Dependency1 dependency1 이랑 같은 효과 ( 의존성 주입 )
+//    public void setDependency1(Dependency1 dependency1) {
+//        System.out.println("Setter Injection - setDependency1");
+//        this.dependency1 = dependency1;
+//    }
+//
+//
+//    public Dependency2 getDependency2() {
+//        return dependency2;
+//    }
+//
+//    @Autowired
+//    public void setDependency2(Dependency2 dependency2) {
+//        System.out.println("Setter Injection - setDependency2");
+//        this.dependency2 = dependency2;
+//    }
 
     public String toString(){
         return "Using "+ dependency1 +" and " + dependency2;
