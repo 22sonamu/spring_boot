@@ -1,5 +1,7 @@
 package com.in28minutes.learnspringframework.game;
 
+import org.springframework.stereotype.Component;
+
 public class SuperContraGame implements GamingConsole{
 
     // 동일한 버튼 -> MarioGame이랑 다른 기능을 수행한다.
