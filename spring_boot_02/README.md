@@ -284,3 +284,46 @@ Dependency Injection을 하면 , 객체 생성 제어의 주체가 프로그래�
     - Lazy : 어플리케이션에 Bean이 아주 드물게 사용될때 좋다.
     - Eager : 대부분의 Bean
 
+
+
+
+### Java Singleton(GOF) vs Spring Singleton
+
+- Spring Singleton : Spring IOC container 하나당 객체 인스턴스가 하나 (scope - 코드 전체)
+- Java Singleton : Java 가상 머신 하나당 객체 인스턴스 하나 (scope - 해당 컨테이너 내부)
+
+
+### Singleton 이란? 
+~~~
+하나의 오브젝트가 여러개 생기는것을 방지하는 디자인패턴
+~~~
+
+빈을 등록할때 아무런 설정을 하지 않으면 싱글톤 scope를 가진다.
+
+### Prototype vs Singleton
+
+1. Instances
+   
+   - Prototype : 1 IOC Container 에 인스턴스 여러개 가능
+   - Singleton : 1 IOC Container <-> 1 인스턴스
+2. Beans
+
+   - Prototype : Bean이 참조될때마다 새로운 Bean 생성
+   - Singleton : 같은 Bean 이 공유됨
+
+3. Code 
+
+   - Prototype :
+
+   ```java
+   @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
+   ```
+   
+   - Singleton : Default
+
+4. 추천상황 
+   
+   - Prototype : Stateful beans (ex . 사용자 정보 - 개인마다 달라야함)
+   - Singleton : Stateless beans
+
+
