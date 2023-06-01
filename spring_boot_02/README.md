@@ -248,5 +248,21 @@ Dependency Injection을 하면 , 객체 생성 제어의 주체가 프로그래�
     - Bean : 객체를 생성하기 전에 여러 사항을 점검해야하는 경우 , 제 3자 라이브러리 Bean을 인스턴스화 하는경우 ( 객체의 class 에 직접 Component 어노테이션을 붙일수 없는 경우 )
 
 
+# Bean 초기화
+
+---------------
+
+
+### Eager 초기화가 추천되는 이유
+어플리케이션이 시작할 때 오류를 바로 확인할 수 있기 때문이다.
+
+### @Lazy
+
+- 실제 의존성 대신 , Lazy-resolution proxy가 주입된다.
+
+- @Configuration 에도 사용할수있는데 , Configuration class 내의 모든 Bean method가 Lazy 초기화 된다.
+
+
+
 
 
