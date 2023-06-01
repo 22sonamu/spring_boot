@@ -262,7 +262,25 @@ Dependency Injection을 하면 , 객체 생성 제어의 주체가 프로그래�
 
 - @Configuration 에도 사용할수있는데 , Configuration class 내의 모든 Bean method가 Lazy 초기화 된다.
 
+### 지연 초기화 vs 즉시 초기화
 
+1. Initilization time
+   
+    - Lazy : 어플리케이션에서 처음 사용될 때 초기화된다.
+    - Eager : 어플리케이션이 처음 실행될 때 초기화된다.
 
+2. 초기화하다가 오류가 발생하면
 
+    - Lazy : 런타임 Exception 이 된다.
+    - Eager : 어플리케이션 시작이 안된다.
+
+3. 메모리 사용량
+    
+    - Lazy : 어플리케이션이 시작될때 모두 초기화되므로 Eager 보다 많이 사용한다.
+    - Eager : Lazy 에 비해 덜 사용한다.
+
+4. 추천 상황
+
+    - Lazy : 어플리케이션에 Bean이 아주 드물게 사용될때 좋다.
+    - Eager : 대부분의 Bean
 
