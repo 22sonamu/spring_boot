@@ -195,3 +195,58 @@ _PacManGame.java_
 ```
 Qualifier > Primary
 ```
+
+# Spring 용어정리
+
+----------
+
+### @Component
+
+Component가 추가된 Class의 인스턴스는 스프링 프레임워크가 관리하게 된다.
+
+
+### Dependency
+
+ex ) GameRunner는 GamingConsole이 필요하다.
+
+- GamingConsole( ex. MarioGame )은 GameRunner의 의존성(Dependency)이다.
+
+### Component Scan
+
+어노테이션을 사용하여 패키지 이름을 명시
+
+### Dependency Injection
+1. Component Scan 하고
+2. 컴포넌트의 의존성을 무엇인지 확인하고 Autowiring
+
+### IOC(제어반전)
+Dependency Injection을 하면 , 객체 생성 제어의 주체가 프로그래머 -> Spring Framework로 반전된다
+
+### Component 와 Bean 의 차이
+1. Where?
+   
+    - Component : Java class
+    - Bean : Spring의 Configuration class 안에 있는 method
+   
+2. Ease of use
+
+    - Component : Easy . 하나의 어노테이션만 추가하면 된다.
+    - Bean : 모든 method에 어노테이션을 추가해야햔다.
+
+3. Autowiring
+
+    - Component : 가능 , Field / Setter / Constructor 3가지 방식으로 가능
+    - Bean : 가능 , mothod call 혹은 Parameter로 가능
+   
+4. Who creates beans?
+
+    - Component : Spring Framework
+    - Bean : 프로그래머가 직접 객체 생성
+5. Recommended for
+
+    - Component : 일반적으로 권장됨
+    - Bean : 객체를 생성하기 전에 여러 사항을 점검해야하는 경우 , 제 3자 라이브러리 Bean을 인스턴스화 하는경우 ( 객체의 class 에 직접 Component 어노테이션을 붙일수 없는 경우 )
+
+
+
+

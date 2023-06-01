@@ -14,7 +14,6 @@ class YourBusinessClass{
 
     Dependency1 dependency1;
 
-
     Dependency2 dependency2;
 
     //Autowired //Spring이 자동으로 생성자를 사용해서 객체를 만든다. //Spring 팀이 가장 추천하는 의존성 주입
