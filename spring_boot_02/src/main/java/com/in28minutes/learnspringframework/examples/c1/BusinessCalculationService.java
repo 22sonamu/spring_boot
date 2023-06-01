@@ -1,6 +1,5 @@
 package com.in28minutes.learnspringframework.examples.c1;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
@@ -8,7 +7,7 @@ import java.util.Arrays;
 @Component
 public class BusinessCalculationService {
 
-    private DataService dataService;
+    private final DataService dataService;
 
     public BusinessCalculationService(DataService dataService){
         this.dataService = dataService;
