@@ -326,4 +326,27 @@ Dependency Injection을 하면 , 객체 생성 제어의 주체가 프로그래�
    - Prototype : Stateful beans (ex . 사용자 정보 - 개인마다 달라야함)
    - Singleton : Stateless beans
 
+   
+# Jakarta EE
+
+------------
+
+1. 초기 자바 버전에서 엔터프라이즈 기능 대부분은 JDK에 구축되어있었다.
+2. 시간이 지나면서
+   
+   - J2EE ( JAVA 2 Platform Enterprise Edition )에 따라 분리되었다.
+   - JavaEE ( J2EE가 리브랜딩됨 )
+   - JakartaEE ( JavaEE의 소유자가 바뀌면서 개명 )
+
+
+- 구성
+   
+   - Jakarta Server Pages (JSP) : 웹 어플리케이션을 만드는데 사용
+   - Jakarta Standard Tag Library(JSTL) : 웹 페이지에 동적 정보를 나타내는데 사용하는 라이브러리
+   - Jakarta Enterprise Beans (EJB)
+   - Jakarta RESTful Web Services : REST 웹 서비스 구축 방법에 대한 규격
+   - Jakarta Bean Validation : Bean 유효성 검사
+   - Jakarta Contexts and Dependency injection(CDI) : 의존성 주입을 위한 API
+   - Jakarta Persistence (JPA)
+- 
 
