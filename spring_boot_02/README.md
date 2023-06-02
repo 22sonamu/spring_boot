@@ -365,3 +365,31 @@ Inject(Autowired와 비슷), Named(Component와 비슷), Qualifier , Scope , Sin
 1. @Service : 어노테이션한 클래스에 비즈니스 로직이 있을때 Component
 2. @Controller : 웹 어플리케이션과 Rest Api 컨트롤러를 정의하는데 사용된다.
 3. @Repository : 빈이 데이터베이스와 통신하는경우
+
+
+# Spring Big Picture - Framework, Modeules, Projects
+ 
+
+-----------------
+
+```
+Spring Projects > Spring Framework > Spring Modules
+```
+
+### Spring Modules
+
+1. Spring MVC : 웹 어플리케이션이나 REST API를 빌드할때 사용
+2. Spring WebFlux : Reactive 어플리케이션 빌드할 떄 사용
+3. JDBC , JPA : Data Access
+4. JMS : 다른 어플리케이션과 통합할 때
+5. Mock Objects, Spring MVC Test... : 단위 테스트 작성
+
+
+### Spring Projects
+
+1. Spring Framework : Spring 첫번째 Project
+2. Spring Security : 서비스에 인증, 권한 부여를 추가하려는 경우에 사용
+3. Spring Data : 동일한 방식으로 여러 데이터와 통합할 때 사용 
+4. Spring Indegration : 다른 어플리케이션과 통합할때 유용한 Project
+5. Spring Boot : 마이크로서비스를 아주 빠르게 빌드하기 위한 project
+6. Spring Cloud : native 어플리케이션을 빌드하기 위한 project
