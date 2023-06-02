@@ -356,3 +356,12 @@ Dependency Injection을 하면 , 객체 생성 제어의 주체가 프로그래�
    의존성 주입을 위한 API
 ~~~
 Inject(Autowired와 비슷), Named(Component와 비슷), Qualifier , Scope , Singleton 같은 의존성 주입용 어노테이션을 포함한다.
+
+
+# Component의 종류
+
+-----------
+
+1. @Service : 어노테이션한 클래스에 비즈니스 로직이 있을때 Component
+2. @Controller : 웹 어플리케이션과 Rest Api 컨트롤러를 정의하는데 사용된다.
+3. @Repository : 빈이 데이터베이스와 통신하는경우
