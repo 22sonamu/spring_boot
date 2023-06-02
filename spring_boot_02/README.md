@@ -350,3 +350,9 @@ Dependency Injection을 하면 , 객체 생성 제어의 주체가 프로그래�
    - Jakarta Persistence (JPA)
 - 
 
+### CDI
+
+~~~
+   의존성 주입을 위한 API
+~~~
+Inject(Autowired와 비슷), Named(Component와 비슷), Qualifier , Scope , Singleton 같은 의존성 주입용 어노테이션을 포함한다.
