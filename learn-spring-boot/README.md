@@ -19,9 +19,13 @@
             - Profies, ConfigurationProperties
         - Monitoring 
 
-# Spring Boot Starter Projects
 
---------
+# 빠른 개발을 위해 Spring Boot 가 제공하는 것
+
+-------
+
+### Spring Boot Starter Projects
+
 
 
 원래 어플리케이션을 빌드하기 위해서는 여러가지 프레임워크가 필요하다 (ex. Spring, Spring MVC, Tomcat, Json conversion....)
@@ -47,7 +51,7 @@ ex) spring boot starter web
 
 을 포함하고있는 의존성이다.
 
-# Spring boot auto configuration 
+### Spring boot auto configuration 
 
 - Auto Configuration은 다음에 기반하여 결정된다.
   
@@ -336,7 +340,9 @@ public class ErrorMvcAutoConfiguration {
 ~~~
 
 
-# Spring Boot DevTools
+### Spring Boot DevTools
 
 - 코드 변경 시, 자동으로 서버를 다시 시작하고 코드 변경사항을 적용한다.
 - pom.xml 에 수정사항이 있을 떈 수동으로 재시작해야한다.
+
+
