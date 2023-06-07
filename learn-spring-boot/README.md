@@ -334,3 +334,9 @@ public class ErrorMvcAutoConfiguration {
 }
 
 ~~~
+
+
+# Spring Boot DevTools
+
+- 코드 변경 시, 자동으로 서버를 다시 시작하고 코드 변경사항을 적용한다.
+- pom.xml 에 수정사항이 있을 떈 수동으로 재시작해야한다.
