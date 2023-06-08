@@ -354,6 +354,14 @@ public class ErrorMvcAutoConfiguration {
 ### Profile을 사용하여 어플리케이션 설정을 관리
 
 
+### 로깅
+
+- off : 전체 로깅을 끈다.
+- error : 오류와 예외만 출력
+- warning
+- info
+- debug
+- trace : 로그에 있는 모든 정보
 
 
 
