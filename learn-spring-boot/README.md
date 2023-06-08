@@ -363,5 +363,29 @@ public class ErrorMvcAutoConfiguration {
 - debug
 - trace : 로그에 있는 모든 정보
 
+# 배포
+
+---------
+
+
+### WAR 방식
+1. install java
+2. 웹 or 어플리케이션 서버 설치 (ex Tomcat, Weblogic ...)
+3. WAR 파일 배포
+
+### Embedded Server
+
+Tomcat과 같은 서버가 이미 jar 파일에 포함되어있다.
+
+1. install java
+2. run jar file
+
+
+/Users/bccard9503/Desktop/git/spring_boot/learn-spring-boot/target/learn-spring-boot-0.0.1-SNAPSHOT.jar
+
+```
+$ java -jar learn-spring-boot-0.0.1-SNAPSHOT.jar 
+```
+명령어로 jar 파일을 실행하면 어플리케이션이 실행된다.
 
 
