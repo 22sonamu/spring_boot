@@ -389,3 +389,57 @@ $ java -jar learn-spring-boot-0.0.1-SNAPSHOT.jar
 명령어로 jar 파일을 실행하면 어플리케이션이 실행된다.
 
 
+# 모니터링
+
+------
+
+
+### Spring boot Actuator
+
+- 여러가지 end point를 제공한다.
+
+  1. beans - Spring boot에 포함된 모든 완료된 bean들 확인가능
+  2. health - 어플리케이션이 제대로 작동하는지 볼수있다.
+  3. metrics - 어플리케이션 metrics 확인가능
+        
+        - metrics : 시간이 지남에 따라 보고된 숫자 값 -> ex)초당 수신하는 요청 수, 응답하는 데 걸린 시간(밀리초) 및 사용자에게 오류를 다시 보낸 응답 수
+
+  4. mappings - 어플리케이션에서 설정된 모든 매핑 관련 세부 사항을 확인
+
+- 사용방법
+
+~~~xml
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-actuator</artifactId>
+</dependency>
+~~~
+
+http://localhost:8080/actuator 에서 상태들을 확인할수있다.
+
+
+~~~properties
+management.endpoints.web.exposure.include=*
+~~~
+
+로 설정해주면 모든 endpoint를 확인 가능하다.
+
+
+# Spring Boot vs Spring MVC vs Spring
+
+------------
+
+1. Spring Framework 
+   
+   - 의존성 주입 (ex. Component, Autowired...)
+   - 하지만 의존성 주입만으로는 강력한 어플리케이션을 만들수 없다.(Hibernate , JPA 같은 다른 프레임워크가 필요하다)
+   
+2. Spring MVC
+
+    - Spring Modules
+    - 웹 어플리케이션과 REST API의 빌드 과정을 간소화 (ex. Controller, RestController..)
+
+3. Spring Boot 
+
+    - Spring Project
+    - 목표 : 프로덕션 환경에서 사용가능한 어플리케이션을 빠르게 빌드하도록 지원
