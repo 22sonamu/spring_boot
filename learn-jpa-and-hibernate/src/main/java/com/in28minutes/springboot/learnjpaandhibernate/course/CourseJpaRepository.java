@@ -21,4 +21,9 @@ public class CourseJpaRepository {
         entityManager.remove(course);
     }
 
+    public Course findById(long id){
+        Course course = entityManager.find(Course.class, id);
+        return course;
+    }
+
 }
