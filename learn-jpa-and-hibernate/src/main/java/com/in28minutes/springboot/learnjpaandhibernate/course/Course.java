@@ -1,8 +1,19 @@
 package com.in28minutes.springboot.learnjpaandhibernate.course;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+@Entity //(name = "Course") //Java Bean과 Table사이의 Mapping을 위함
 public class Course {
+
+    @Id
     private long id;
+
+    @Column //(name = "name")
     private String name;
+
+    @Column //(name = "author")
     private String author;
 
     public Course(){
