@@ -21,3 +21,17 @@
 ### Spring 
 
 - JPA 보다도 더 간단하다.
+
+
+# Hibernate vs JPA
+
+
+-----
+
+### JPA
+- 기술 명세를 정의한다. (API)
+- 객체를 테이블로 매핑하는 방식을 정의
+
+### HIbernate
+- JPA 에서 인기있는 구현체 (JPA를 구현)
+- 다른 구현체들은 Toplink 같은 것들이 있다.
