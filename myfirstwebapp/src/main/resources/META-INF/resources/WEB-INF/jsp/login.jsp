@@ -5,6 +5,6 @@
     </title>
 </head>
 <body>
-login page body
+${name}, login page body
 </body>
 </html>
