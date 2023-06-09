@@ -27,4 +27,13 @@ public class SayHelloController {
         sb.append("</html>");
         return sb.toString();
     }
+
+    //sayHello.jsp -> Spring이 정한 폴더 안에 정의해야한다.
+    // source/main/resource/META-INF/resources/WEB-INF/jsp/####.jsp
+    @RequestMapping("say-hello-jsp")
+    //@ResponseBody -> 가 있으면 sayHello 자체를 return할것이다.
+    public String sayHelloJsp(){
+        return "sayHello";
+    }
+
 }
