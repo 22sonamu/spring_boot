@@ -11,8 +11,5 @@
     <div>
         Your Name : ${name}
     </div>
-    <div>
-        Your password : ${password}
-    </div>
 </body>
 </html>
