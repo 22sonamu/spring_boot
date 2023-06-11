@@ -5,11 +5,11 @@
     </title>
 </head>
 <body>
+
     <div>
-        Welcome to Mara World
+        Welcome !  ${name}
     </div>
-    <div>
-        Your Name : ${name}
-    </div>
+    <hr>
+    <div><a href="list-todos">Manage</a> your todos</div>
 </body>
 </html>
