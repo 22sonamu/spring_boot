@@ -87,3 +87,9 @@
     - 저장하고 싶은 정보를 다수의 요청에 걸쳐 저장할 수 있다.
     - @SessionAttributes
     - 추가로 메모리를 차지하기 때문에 필요없는건 삭제해주는것이 좋다.
+
+
+
+/META-INF/resources/webjars/bootstrap/5.1.3/css/bootstrap.min.css
+/META-INF/resources/webjars/bootstrap/5.1.3/js/bootstrap.min.js
+/META-INF/resources/webjars/jquery/3.6.0/jquery.min.js
