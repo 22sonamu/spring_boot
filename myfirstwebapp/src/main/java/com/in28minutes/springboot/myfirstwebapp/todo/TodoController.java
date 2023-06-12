@@ -30,14 +30,17 @@ public class TodoController {
     }
 
     @RequestMapping(value = "add-todo", method = RequestMethod.GET)
-    public String showTodoPage() {
+    public String showTodoPage(ModelMap model) {
+        String username = (String) model.get("name");
+        Todo todo = new Todo(0,username, "", LocalDate.now().plusYears(1), false);
+        model.put("todo", todo);
         return "todo";
     }
 
     @RequestMapping(value = "add-todo", method = RequestMethod.POST)
-    public String showNewTodoPage(@RequestParam String description, ModelMap model) { //name 값을 가져오기 위해 사용
+    public String showNewTodoPage(ModelMap model, Todo todo) { //name 값을 가져오기 위해 사용
         String username = (String) model.get("name");
-        todoService.addTodo(username, description, LocalDate.now().plusYears(1), false);
+        todoService.addTodo(username, todo.getDescription(), LocalDate.now().plusYears(1), false);
         // 투두list를 설정해주는 중복 코드를 없애기 위해 list-todos url로 바로 리디렉션한다.
         return "redirect:list-todos";
     }

@@ -90,6 +90,41 @@
 
 
 
-/META-INF/resources/webjars/bootstrap/5.1.3/css/bootstrap.min.css
-/META-INF/resources/webjars/bootstrap/5.1.3/js/bootstrap.min.js
-/META-INF/resources/webjars/jquery/3.6.0/jquery.min.js
+- /META-INF/resources/webjars/bootstrap/5.1.3/css/bootstrap.min.css
+- /META-INF/resources/webjars/bootstrap/5.1.3/js/bootstrap.min.js
+- /META-INF/resources/webjars/jquery/3.6.0/jquery.min.js
+
+# Spring MVC를 이용한 검증 구현
+
+----------
+
+1. 검증과 관련된 starter project import (spring-boot-starter-validation)
+2. Command Bean or Form Backing Object 라는 개념을 사용
+
+    - Command Bean
+    ~~~java
+   @RequestMapping(value = "add-todo", method = RequestMethod.POST)
+    public String showNewTodoPage(ModelMap model, Todo todo) { //name 값을 가져오기 위해 사용
+        String username = (String) model.get("name");
+        todoService.addTodo(username, todo.getDescription(), LocalDate.now().plusYears(1), false);
+        return "redirect:list-todos";
+    }
+   ~~~
+    - Form Backing Object
+   ~~~xml
+    <form:form method="post" modelAttribute="todo">
+            Description : <form:input type="text" path="description"/>
+            <form:input type="hidden" path="done"/>
+            <form:input type="hidden" path="id"/>
+            <input type="submit" class="btn btn-success"/>
+    </form:form>
+   ~~~
+
+    - 2-way binding (todo.jsp & TodoController.java)
+    
+3. Bean에 검증을 추가
+   
+    - Todo.java
+4. 검증 오류를 View에 표시
+    
+    - todo.jsp
