@@ -45,7 +45,7 @@ public class TodoController {
             return "todo";
         }
         String username = (String) model.get("name");
-        todoService.addTodo(username, todo.getDescription(), LocalDate.now().plusYears(1), false);
+        todoService.addTodo(username, todo.getDescription(), todo.getTargetDate(), false);
         // 투두list를 설정해주는 중복 코드를 없애기 위해 list-todos url로 바로 리디렉션한다.
         return "redirect:list-todos";
     }
