@@ -1,10 +1,15 @@
 package com.in28minutes.springboot.myfirstwebapp.todo;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 import jakarta.validation.constraints.Size;
 
 import java.time.LocalDate;
 
+
 //Static List of todos => Database(H2, MySQL)
+@Entity //database 에 매핑
 public class Todo {
 
     public Todo(int id, String username, String description, LocalDate targetDate, boolean done) {
@@ -14,6 +19,9 @@ public class Todo {
         this.targetDate = targetDate;
         this.done = done;
     }
+
+    @Id
+    @GeneratedValue
     private int id;
     private String username;
     @Size(min=10, message="Enter atleast 10 characters")
@@ -73,4 +81,6 @@ public class Todo {
                 ", done=" + done +
                 '}';
     }
+
+
 }
