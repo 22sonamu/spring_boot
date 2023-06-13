@@ -1,6 +1,8 @@
 package com.in28minutes.springboot.myfirstwebapp.login;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,9 +17,14 @@ public class WelcomeController {
 
     //Model
     @RequestMapping(value = "/" , method = RequestMethod.GET)
-    public String gotoWlcomePage(ModelMap model){
-        model.put("name", "in28minutes");
+    public String gotoWelcomePage(ModelMap model){
+        model.put("name", getLoggedinUsername());
         return "welcome";
+    }
+    private String getLoggedinUsername(){
+        //현재 인증된 사용자 정보를 전달
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        return authentication.getName();
     }
 
 }

@@ -1,6 +1,8 @@
 package com.in28minutes.springboot.myfirstwebapp.todo;
 
 import jakarta.validation.Valid;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -25,10 +27,17 @@ public class TodoController {
 
     @RequestMapping("list-todos")
     public String listAllTodos(ModelMap model) {
-        List<Todo> todos = todoService.findByUsername("in28minutes");
+        //세션으로부터 name을 받으면 , 세션 등록 안된경우 null이 넘어온다 -> Spring security에서 직접 받아오는게 좋다.
+        String username = getLoggedInUsername();
+        List<Todo> todos = todoService.findByUsername(username);
         model.addAttribute("todos", todos);
 
         return "listTodos";
+    }
+
+    private String getLoggedInUsername(){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        return authentication.getName();
     }
 
     @RequestMapping(value = "add-todo", method = RequestMethod.GET)
