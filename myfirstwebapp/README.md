@@ -140,3 +140,20 @@
 - H2 : 인메모리 데이터배이스
   
     - 데이터가 유지되지않는다 (서버를 시작할때마다 초기화된다)
+
+
+# Docker
+
+----------
+
+- MYSQL 컨테이너 만들기
+
+~~~shell
+docker run --detach 
+--env MYSQL_ROOT_PASSWORD=dummypassword  
+--env MYSQL_USER=todos-user #database 사용자
+--env MYSQL_PASSWORD=dummytodos #database의 비밀번호
+--env MYSQL_DATABASE=todos  #데이터베이스 연결
+--name mysql #이름 지정
+--publish 3306:3306 mysql:8-oracle #3306포트에 게시
+~~~
