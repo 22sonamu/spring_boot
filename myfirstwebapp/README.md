@@ -128,3 +128,15 @@
 4. 검증 오류를 View에 표시
     
     - todo.jsp
+
+# Spring Boot Auto Configuration - Data JPA
+
+- JPA 와 H2 의존성을 추가했을때
+
+  - JPA / Spring Data JPA 프레임워크 초기화
+  - in memory Database(H2) 가 실행됨
+  - 어플리케이션 - 데이터베이스 연결됨
+. 
+- H2 : 인메모리 데이터배이스
+  
+    - 데이터가 유지되지않는다 (서버를 시작할때마다 초기화된다)
