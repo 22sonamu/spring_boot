@@ -14,22 +14,24 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import java.time.LocalDate;
 import java.util.List;
 
-//@Controller
+@Controller
 @SessionAttributes("name")
-public class TodoController {
+public class TodoControllerJpa {
 
-    public TodoController(TodoService todoService) {
+    public TodoControllerJpa(TodoService todoService, TodoRepository todoRepository) {
         this.todoService = todoService;
+        this.todoRepository = todoRepository;
     }
 
     private TodoService todoService;
 
+    private TodoRepository todoRepository;
 
     @RequestMapping("list-todos")
     public String listAllTodos(ModelMap model) {
         //세션으로부터 name을 받으면 , 세션 등록 안된경우 null이 넘어온다 -> Spring security에서 직접 받아오는게 좋다.
         String username = getLoggedInUsername();
-        List<Todo> todos = todoService.findByUsername(username);
+        List<Todo> todos = todoRepository.findByUsername(username);
         model.addAttribute("todos", todos);
 
         return "listTodos";
