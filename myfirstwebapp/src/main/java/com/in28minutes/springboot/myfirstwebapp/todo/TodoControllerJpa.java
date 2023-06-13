@@ -18,12 +18,9 @@ import java.util.List;
 @SessionAttributes("name")
 public class TodoControllerJpa {
 
-    public TodoControllerJpa(TodoService todoService, TodoRepository todoRepository) {
-        this.todoService = todoService;
+    public TodoControllerJpa(TodoRepository todoRepository) {
         this.todoRepository = todoRepository;
     }
-
-    private TodoService todoService;
 
     private TodoRepository todoRepository;
 
@@ -56,20 +53,21 @@ public class TodoControllerJpa {
             return "todo";
         }
         String username = (String) model.get("name");
-        todoService.addTodo(username, todo.getDescription(), todo.getTargetDate(), false);
+        todo.setUsername(username);
+        todoRepository.save(todo);
         // 투두list를 설정해주는 중복 코드를 없애기 위해 list-todos url로 바로 리디렉션한다.
         return "redirect:list-todos";
     }
 
     @RequestMapping("delete-todo")
     public String deleteTodo(@RequestParam int id) {
-        todoService.deleteById(id);
+        todoRepository.deleteById(id);
         return "redirect:list-todos";
     }
 
     @RequestMapping(value="update-todo", method = RequestMethod.GET)
     public String showUpdateTodoPage(@RequestParam int id, ModelMap model) {
-        Todo todo = todoService.findById(id);
+        Todo todo = todoRepository.findById(id).get();
         model.addAttribute("todo", todo);
         return "todo";
     }
@@ -81,7 +79,7 @@ public class TodoControllerJpa {
         }
         String username = (String)model.get("name");
         todo.setUsername(username);
-        todoService.updateTodo(todo);
+        todoRepository.save(todo);
         return "redirect:list-todos";
     }
 
