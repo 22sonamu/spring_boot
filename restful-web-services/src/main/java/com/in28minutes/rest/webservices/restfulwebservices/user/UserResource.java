@@ -1,5 +1,7 @@
 package com.in28minutes.rest.webservices.restfulwebservices.user;
 
+import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -37,7 +39,7 @@ public class UserResource {
     }
 
     @RequestMapping(value = "/users", method = RequestMethod.POST)
-    public ResponseEntity<User> createUser(@RequestBody User user){
+    public ResponseEntity<User> createUser(@Valid @RequestBody User user){
         User savedUser = service.save(user);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest() //현재 요청 경로 (http://localhost/users)
                 .path("/{id}") //현재 요청의 URL에 추가하고 싶은 내용
