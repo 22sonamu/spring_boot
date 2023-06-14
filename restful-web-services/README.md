@@ -178,3 +178,11 @@
 
 - HTTP Request Header 사용 ( Accept-Language )
 - ex. en - English , nl - 네덜란드어 ....
+
+
+
+# Rest Api version 관리
+
+---------
+
+- 응답의 구조를 변경한다면, 모든 소비자에게 영향을 끼칠 수 있다.
