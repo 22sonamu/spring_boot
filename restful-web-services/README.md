@@ -85,3 +85,67 @@
 
 - 2016 : Swagger Specification을 기반으로 OPEN API 사양이 만들어졌다.
 
+- open api
+
+```json
+{
+  "openapi" : "3.0.1",
+  "info" : {
+    "title" : "OpenAPI definition",
+    "version" : "v0"
+  },
+  "servers" : [ //서버 노출 위치
+    {
+      "url" : "http://localhost:8080", 
+      "description" : "Generated server ual"
+    }
+  ],
+  "paths" : { //리소스에 관한 세부 정보
+    "/users": {
+      "get": {
+        "tags": [
+          "user-resource" //메소드
+        ],
+        "operationId": "retrieveAllUsers",
+        "responses": {
+          "200": { //예상응답
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components" : { //선언된 객체
+    "schemas" : {
+      "User": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "maxLength": 2147483647,
+            "minLength": 2,
+            "type": "string"
+          },
+          "birthDate": {
+            "type": "string",
+            "format": "date"
+          }
+        }
+      }
+    }
+  }
+}
+```
