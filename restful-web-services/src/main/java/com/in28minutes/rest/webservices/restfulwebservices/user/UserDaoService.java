@@ -30,6 +30,7 @@ public class UserDaoService {
 
     public User findOne(int id){
         Predicate<? super User> predicate = user -> user.getId() == id;
-        return users.stream().filter(predicate).findFirst().get();
+        //조건에 맞는 데이터가 없으면 null보내기 , 200
+        return users.stream().filter(predicate).findFirst().orElse(null);
     }
 }
