@@ -287,5 +287,5 @@ REST Api를 사용하는 클라이언트가 전적으로 서버와 동적인 상
 
   - Filtering
 
-    - 정적 필터링 : 여러 api에서 다 필터링됨
+    - 정적 필터링 : 여러 api에서 다 필터링됨 (@JsonIgnore , @JsonIgnoreProperties())
     - 동적 필터링 : api에 특성에 띠라 필터링 여부를 결정할수있음
