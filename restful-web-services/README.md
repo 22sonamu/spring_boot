@@ -149,3 +149,24 @@
   }
 }
 ```
+
+# Content Negotiation
+
+--------
+
+- 보통 같은 리소스는 같은 URI를 가진다. 
+- 그러나 여러 표현이 가능하다 (JSON , XML ... 혹은 English, Korean..)
+- 이 경우 소비자는 자신이 원하는 표현을 설정해야한다.
+  
+  - Accept headet (ex. applcation/xml, application/json....)
+  - Accept-Language header
+
+- jackson-dataformat-xml
+~~~xml
+<dependency>
+  <groupId>com.fasterxml.jackson.dataformat</groupId>
+  <artifactId>jackson-dataformat-xml</artifactId>
+</dependency>
+~~~
+
+이 의존성을 추가하기만 하면 사용자는 Header에 Accept : 원하는 응답 형식 을 지정할 수 있다.
