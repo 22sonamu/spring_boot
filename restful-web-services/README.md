@@ -186,3 +186,53 @@
 ---------
 
 - 응답의 구조를 변경한다면, 모든 소비자에게 영향을 끼칠 수 있다.
+
+
+- Options
+
+  1. URI Versioning
+    
+    - http://localhost:8080/v1/person
+    - http://localhost:8080/v2/person
+
+  2. Request Parameter versioning
+
+    - http://localhost:8080/person?version=1
+    - http://localhost:8080/person?version=2
+
+  3. (Custom) headers versioning
+  
+    - SAME-URL headers=[X-API-VERSION=1]
+    - SAME-URL headers=[X-API-VERSION=2]
+
+  4. Media type versioning
+
+    - SAME-URL produces=application/vnd.company.app-v1+json
+    - SAME-URL produces=application/vnd.company.app-v2+json
+
+- 고려해야할 것들
+  
+  1. URI Pollution
+     
+    - 1,2번 방법은 url을 새로 만들어야해서 uri pollution이 발생
+
+  2. HTTP header 오용
+     
+    - 3,4번 방법은 header를 오용하는것이다.
+
+  3. Caching
+  
+    - Caching은 일반적으로 URL을 기반으로 수행된다.
+    - 3,4번 방법은 다른 버전이지만 같은 url을 쓰므로 url을 기반으로 캐싱을 할수 없다.
+    - 캐싱을 할때 헤더를 살펴봐야한다.
+
+  4. 브라우저에서 요청을 실행 할 수 있는지?
+    
+    - 1,2번 방법은 브라우저에서 실행해볼수있다. 그러나 3,4번은 Header를 설정해야 해서 브라우저로 접근 불가능하다.
+
+  5. API Documentation
+  
+     - 1,2번은 버전 관리에 대한 API문서를 만들기 쉽다. (URL이 다르기 때문)
+     - API문서 생성 툴은 헤더를 기준으로 구분하는 문서의 생성을 지원하지 않을 수 있다.
+
+**가장 적절한 방법을 선택해서 , 일관되게 버전 관리 하는것이 가장 중요하다.**
