@@ -1,7 +1,10 @@
 package com.in28minutes.rest.webservices.restfulwebservices.user;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -23,8 +26,13 @@ public class UserResource {
         return service.findOne(id);
     }
 
-    @PostMapping("/users")
-    public void createUser(@RequestBody User user){
-        service.save(user);
+    @RequestMapping(value = "/users", method = RequestMethod.POST)
+    public ResponseEntity<User> createUser(@RequestBody User user){
+        User savedUser = service.save(user);
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest() //현재 요청 경로 (http://localhost/users)
+                .path("/{id}") //현재 요청의 URL에 추가하고 싶은 내용
+                .buildAndExpand(savedUser.getId())//사용자의 ID로 대치
+                .toUri();
+        return ResponseEntity.created(location).build(); //201이 반환되고, header에 location : http://localhost/users/4 가 온다
     }
 }

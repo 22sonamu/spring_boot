@@ -53,3 +53,23 @@
     - GET /users/{id}/posts : 특정 사용자가 작성한 게시물
     - POST /users/{id}/posts : create 게시물
     - GET /users/{id}/posts/{post_id} : 게시물 상세 조회
+
+# REST 응답 상태 종류
+
+-------
+
+1. 404 : 리소스를 찾지 못함
+2. 500 : 서버에서 Exception
+3. 400 : 검증 에러
+4. 200 : 성공
+5. 201 : post로 새 리소스 생성했을때
+   
+  ~~~java
+  @RequestMapping(value = "/users", method = RequestMethod.POST)
+    public ResponseEntity<User> createUser(@RequestBody User user){
+            service.save(user);
+            return ResponseEntity.created(null).build();
+    }
+  ~~~
+6. 204 : 리소스를 업데이트하기위해 put 을 했는데 해당 리소스가 없을때
+7. 401 : 사용자가 요청에 올바른 정보를 넣지 않았을때
