@@ -170,3 +170,11 @@
 ~~~
 
 이 의존성을 추가하기만 하면 사용자는 Header에 Accept : 원하는 응답 형식 을 지정할 수 있다.
+
+
+# Internationalization - i18n
+
+---------
+
+- HTTP Request Header 사용 ( Accept-Language )
+- ex. en - English , nl - 네덜란드어 ....
