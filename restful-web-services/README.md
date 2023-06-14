@@ -236,3 +236,36 @@
      - API문서 생성 툴은 헤더를 기준으로 구분하는 문서의 생성을 지원하지 않을 수 있다.
 
 **가장 적절한 방법을 선택해서 , 일관되게 버전 관리 하는것이 가장 중요하다.**
+
+
+# HATEOAS
+
+---------
+
+```text
+Hypermedia as the Engine of Application State.
+REST Api를 사용하는 클라이언트가 전적으로 서버와 동적인 상호작용이 가능하도록 하는 것.
+```
+
+- 클라이언트가 서버로부터 어떠한 요청을 할 때, 요청에 필요한 URI를 응답에 포함시켜 반환한다.
+
+- Option
+
+  1. 사용자 정의 형식 설계하여 구현한다.
+  2. 표준 형식으로 구현한다. 
+     
+    - HAL(JSON Hypertext Application Language) : API의 리소스에 하이퍼링크를 생성하는 일관적이고 쉬운 방법을 제공하는 형식
+    - Spring HATEOAS를 사용하면된다.
+
+  ```json
+  {
+    "id": 2,
+    "name": "Zaza",
+    "birthDate": "1998-06-14",
+    "_links": {
+        "all-users": {
+            "href": "http://localhost:8080/users"
+        }
+    }
+  } 
+  ```
