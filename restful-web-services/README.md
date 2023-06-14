@@ -73,3 +73,15 @@
   ~~~
 6. 204 : 리소스를 업데이트하기위해 put 을 했는데 해당 리소스가 없을때
 7. 401 : 사용자가 요청에 올바른 정보를 넣지 않았을때
+
+
+# Swagger / Open Api 
+
+---------
+
+- 2011 : Swagger Specification / Swagger Tools 도입
+
+  - 이 시기에 많은 REST API를 구축하기 시작했고, 이에 따라 REST API를 문서화 할 수 있는 형식이 필요했다.
+
+- 2016 : Swagger Specification을 기반으로 OPEN API 사양이 만들어졌다.
+
