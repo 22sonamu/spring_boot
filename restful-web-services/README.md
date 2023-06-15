@@ -366,3 +366,44 @@ ex.HelloWorldController
   }
 }
 ```
+
+
+# HAL Explorer
+
+------
+
+
+- HAL 
+
+```text
+  JSON Hypertext Appplication Launguage 
+  일관되고 쉽게 api 리소스 간 하이퍼링크를 제공
+```
+
+ex. HATEOAS
+
+```json
+{
+  "id": 1,
+  "user_name": "Mara",
+  "birth_date": "1999-06-15",
+  //_links에서 사용한 format = HAL
+  "_links": {
+    "all-users": {
+      "href": "http://localhost:8080/users"
+    }
+  }
+}
+```
+
+- HAL Explorer
+
+```text
+  HAL을 이용하는 RESTful 하이퍼미디어 API를 탐색하는 API탐색기
+```
+  - 장점 : 비전문가도 API를 사용할 수 있다.
+
+
+- Spring Boot HAL Explorer
+
+  - Spring Boot는 HAL Explorer를 자동 설정해준다.
