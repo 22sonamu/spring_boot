@@ -407,3 +407,35 @@ ex. HATEOAS
 - Spring Boot HAL Explorer
 
   - Spring Boot는 HAL Explorer를 자동 설정해준다.
+
+
+
+
+
+# User / Post 관계 연결
+
+---------
+
+  User.java
+
+~~~java
+    @OneToMany(mappedBy = "user") //user 기준으로 post는 여러개
+    @JsonIgnore
+    private List<Post> posts;
+~~~
+
+  Post.java
+~~~java
+    @ManyToOne(fetch = FetchType.LAZY) 
+    @JsonIgnore
+    private User user;
+~~~
+
+
+~~~shell
+  Hibernate: create sequence post_seq start with 1 increment by 50
+  Hibernate: create sequence user_details_seq start with 1 increment by 50
+  Hibernate: create table post (id integer not null, user_id integer, description varchar(255), primary key (id)) //user이랑 post를 1:N 관계로 연결 , fk인 user_id가 자동으로 생성되었다.
+  Hibernate: create table user_details (birth_date date, id integer not null, name varchar(255), primary key (id))
+  Hibernate: alter table if exists post add constraint FKa3biitl48c71riii9uyelpdhb foreign key (user_id) references user_details
+~~~

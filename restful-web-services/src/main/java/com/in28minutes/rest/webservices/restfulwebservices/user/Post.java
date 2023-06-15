@@ -1,0 +1,43 @@
+package com.in28minutes.rest.webservices.restfulwebservices.user;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
+
+@Entity
+public class Post {
+    @Id
+    @GeneratedValue
+    private Integer id;
+
+    private String description;
+
+    @ManyToOne(fetch = FetchType.LAZY) //post여러개가 같은 user를 가질 수 있다.
+    //관계가 지연 로딩되는지 , 즉시 로딩되는지를 설정할 수 있다.
+    // Eager Fetch -> 게시물 세부 정보와 사용자 세부 정보를 같이 가져온다. (엔터티를 조회할 때 연관된 엔터티도 불러온다)
+    @JsonIgnore
+    private User user;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    @Override
+    public String toString() {
+        return "Post{" +
+                "id=" + id +
+                ", description='" + description + '\'' +
+                '}';
+    }
+}
