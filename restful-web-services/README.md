@@ -289,3 +289,80 @@ REST Api를 사용하는 클라이언트가 전적으로 서버와 동적인 상
 
     - 정적 필터링 : 여러 api에서 다 필터링됨 (@JsonIgnore , @JsonIgnoreProperties())
     - 동적 필터링 : api에 특성에 띠라 필터링 여부를 결정할수있음
+
+# Spring Boot Actuator 
+
+-------
+
+- Bean
+
+ex.
+```json
+"helloWorldController" : {
+  "aliases": [],
+  "scope": "singleton", 
+  "type": "com.in28minutes.rest.webservices.restfulwebservices.helloworld.HelloWorldController",
+  "resource": "file [/Users/bccard9503/Desktop/git/spring_boot/restful-web-services/target/classes/com/in28minutes/rest/webservices/restfulwebservices/helloworld/HelloWorldController.class]", //리소스의 위치
+  "dependencies": [
+    "messageSource" //의존성
+  ]
+}
+
+```
+
+- metrics
+
+
+ex. http://localhost:8080/actuator/metrics/http.server.requests
+
+~~~json
+{
+  "name": "http.server.requests", //http 요청 수에 관련한 세부 정보
+  "baseUnit": "seconds",
+  "measurements": [
+    {
+      "statistic": "COUNT",
+      "value": 4  //4번 요청됨
+    },
+    {
+      "statistic": "TOTAL_TIME",
+      "value": 0.07901487600000001
+    },
+    {
+      "statistic": "MAX",
+      "value": 0.034623042
+    }
+    ]
+}
+~~~
+
+- mappings
+
+ex.HelloWorldController
+
+
+```json
+{
+  "handler": "com.in28minutes.rest.webservices.restfulwebservices.helloworld.HelloWorldController#helloWorldVariable(String)",
+  "predicate": "{GET [/hello-world/path-variable/{name}]}", //Get , URI 
+  "details": {
+  "handlerMethod": {
+    "className": "com.in28minutes.rest.webservices.restfulwebservices.helloworld.HelloWorldController",
+    "name": "helloWorldVariable",
+    "descriptor": "(Ljava/lang/String;)Lcom/in28minutes/rest/webservices/restfulwebservices/helloworld/HelloWorldBean;"
+  },
+  "requestMappingConditions": {
+    "consumes": [],
+    "headers": [],
+    "methods": [
+      "GET"
+    ],
+    "params": [],
+    "patterns": [
+      "/hello-world/path-variable/{name}"
+    ],
+    "produces": []
+    }
+  }
+}
+```
