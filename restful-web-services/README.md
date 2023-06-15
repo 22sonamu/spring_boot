@@ -439,3 +439,144 @@ ex. HATEOAS
   Hibernate: create table user_details (birth_date date, id integer not null, name varchar(255), primary key (id))
   Hibernate: alter table if exists post add constraint FKa3biitl48c71riii9uyelpdhb foreign key (user_id) references user_details
 ~~~
+
+
+# jpa optional 사용법
+
+### optinal class란?
+
+Optional이란 **null일수도 있는 객체**를 감싸는 일종의 Wrapper class 이다.
+
+~~~java
+  Optional<T> optional
+~~~
+
+### Optional 객체 생성
+
+1. Optional.empty() : 비어있는 Optional 객체를 생성한다. 따라서 내부에 있는 Member 객체는 null이고, Optional 내부적으로 미리 생성해놓은 Singleton 인스턴스이다.
+
+~~~java
+  Optional<Memver> optMember = Optional.empty();
+~~~
+
+2. Optional.if(value) : 인자 value를 담고 있는 Optional 객체로 생성한다. 만약 넘긴 객체가 null이라면 NullPointExvception이 발생한다.
+
+~~~java
+  Optional<Memeber> optMember = Optional.ofNullable(member);
+~~~
+
+3. Optional.ofNullable(value) : null일수도 있고 아닐수도있는 객체를 담아 Optional 객체로 생성한다. null인지 아닌지 확신이 서지 않는 객체를 생성할 때 쓴다.
+
+~~~java
+  Optional<Member> optMember = Optional.ofNullable(member);
+~~~
+
+
+### Optional 객체에 접근하는 법
+
+1. get()  
+    Optional 내부에 담긴 객체를 반환한다.  
+    만약 null인 객체라면 NoSuchElementException이 발생한다. 따라서 분기처리가 필요하다. 
+
+~~~java
+    Memeber member = optMember.get();
+    if(member.isPresent()){
+        
+    }
+    else{
+        
+    }
+~~~
+
+2. orElseThrow(Supplier<? extends X> exceptionSupplier)   
+
+    Optional 내부에 담긴 객체가 null이 아니면 담겨 있는 객체를 반환하고, null이라면 지정된 에러를 발생시킨다.
+
+~~~java
+  Member member = optMember.orElseThrow(NullPointerException::new);
+~~~
+
+3. orElse(T other)   
+  
+    Optional 내부에 담긴 객체가 null이 아니라면 담겨있는 객체를 반환하고, null이라면 인자로 넘겨준 member1이라는 객체를 반환한다.   
+    Optional 내부 객체의 null 여부와 상관 없이 , member1 객체는 생성된다.
+
+~~~java
+  Member member = optMember.orElse(member1);
+~~~
+
+4. orElseGet(Supplier<? extends T> other) 
+
+   Optional 내부에 담긴 객체가 null이 아니라면 담겨있는 객체를 반환하고, null이라면 인자로 넘겨준 함수형 인자를 통해 생성된 객체를 반환한다.   
+   Optional 내부의 객체가 null이 아니랴면, member1객체는 생성되지 않는다.
+
+# java Predicate
+
+-----------
+
+### Java Predicate란?
+
+  Predicate Interface는 Java에서 함수형 프로그래밍을 구현하기 위해 Java 버전 1.8부터 도입된 함수형 인터페이스로 제네릭 타입인 한 개의 매개변수를 전달받아 특정 작업을 수행 후 Boolean 타입의 값을 반환하는 작업을 수행할 때, 사용된다.
+
+
+  
+
+### Predicate 객체 생성
+
+~~~java
+  Predicate<Integer> predicate = (num) -> num > 10;
+~~~
+
+### 4가지 메서드
+
+1. test()  
+     제네릭 타입인 매개변수를 전달받아 특정 작업을 수행 후 Boolean 타입의 값을 반환한다.
+
+~~~java
+  Predicate<Integer> predicate = (num) -> num > 10;
+  boolean result = predicate.test(100);
+~~~
+
+2. and()
+
+    test() 메서드 반환 결과와 and() 메서드의 매개변수로 전달된 Predicate 객체의 test() 메서드 반환 결과에 대해 and 연산을 수행한다.
+~~~java
+  Predicate<Integer> predicate1 = (num) -> num > 10;
+  Predicate<Integer> predicate2 = (num) -> num < 20;
+  
+  boolean result = predicate1.and(predicate2).test(25);
+~~~
+
+
+3. negate() 
+
+    매개변수를 가지지 않으며, test() 메서드의 반환 결과를 부정한다
+
+4. or()
+
+    test() 메서드 반환 결과와 or() 메서드의 매개변수로 전달된 Predicate 객체의 test() 메서드 반환 결과에 대해 or 연산을 수행한다.
+
+
+5. isEqual()
+
+    인자로 전달된 객체와 같은지 비교하는 Predicate 객체를 리턴한다.  
+    Stream에서 사용될 수도 있으며, Stream으로 전달되는 데이터가 특정 값과 같은지 비교할 때 사용할 수 있다.
+
+    ~~~java
+      Stream<Integer> stream = IntStream.range(1, 10).boxed();
+
+      stream.filter(Predicate.isEqual(5)).forEach(System.out::println);
+   ~~~
+  
+
+- Stream + Predicate 활용 예제
+
+~~~java
+  List<String> names = Arrays.asList("James", "Alex", "Alberto", "Robert");
+  Predicate<String> startsWithPredicate = str -> str.startsWith("A");
+  Predicate<String> lengthPredicate = str -> str.length() >= 5;
+
+  List<String> result = names.stream()
+    .filter(startsWithPredicate.or(lengthPredicate))
+    .collect(Collectors.toList());
+~~~
