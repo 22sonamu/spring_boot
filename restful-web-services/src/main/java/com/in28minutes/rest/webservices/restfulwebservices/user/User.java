@@ -16,11 +16,11 @@ public class User {
     @GeneratedValue
     private Integer id;
     @Size(min=2, message = "Name should have atleast 2 characters")
-    @JsonProperty("user_name") //name 말고 user name
+    //@JsonProperty("user_name") //name 말고 user name
     private String name;
 
     @Past(message = "Birth Date should be in the past") //항상 과거여야함
-    @JsonProperty("birth_date")
+    //@JsonProperty("birth_date")
     private LocalDate birthDate;
 
 
@@ -28,6 +28,10 @@ public class User {
         this.id = id;
         this.name = name;
         this.birthDate = birthDate;
+    }
+
+    public User() {
+
     }
 
 
