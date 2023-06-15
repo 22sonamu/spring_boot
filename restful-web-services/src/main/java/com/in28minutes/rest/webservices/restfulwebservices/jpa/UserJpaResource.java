@@ -2,7 +2,6 @@ package com.in28minutes.rest.webservices.restfulwebservices.jpa;
 
 import com.in28minutes.rest.webservices.restfulwebservices.user.Post;
 import com.in28minutes.rest.webservices.restfulwebservices.user.User;
-import com.in28minutes.rest.webservices.restfulwebservices.user.UserDaoService;
 import com.in28minutes.rest.webservices.restfulwebservices.user.UserNotFoundException;
 import jakarta.validation.Valid;
 import org.springframework.hateoas.EntityModel;
@@ -24,9 +23,11 @@ public class UserJpaResource {
 
     private UserRepository repository;
 
-    public UserJpaResource(UserRepository repository){
-        this.repository=repository;
+    private PostRepository postRepository;
 
+    public UserJpaResource(UserRepository repository, PostRepository postRepository){
+        this.repository=repository;
+        this.postRepository = postRepository;
     }
 
     @GetMapping("/jpa/users")
@@ -71,6 +72,21 @@ public class UserJpaResource {
             throw new UserNotFoundException("id : " + id);
         }
         return user.get().getPosts();
+    }
+
+    @PostMapping("/jpa/users/{id}/posts")
+    public ResponseEntity<Object> createPostsForUser(@PathVariable int id, @Valid @RequestBody Post post){
+        Optional<User> user = repository.findById(id);
+        if(user.isEmpty()){
+            throw new UserNotFoundException("id : " + id);
+        }
+        post.setUser(user.get());
+        Post savedPost = postRepository.save(post);
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest() //현재 요청 경로 (http://localhost/jpa/users/{id}/posts)
+                .path("/{id}") //현재 요청의 URL에 추가하고 싶은 내용
+                .buildAndExpand(savedPost.getId())//등록된 post 의 ID로 대치
+                .toUri();
+        return ResponseEntity.created(location).build();
     }
 
 }

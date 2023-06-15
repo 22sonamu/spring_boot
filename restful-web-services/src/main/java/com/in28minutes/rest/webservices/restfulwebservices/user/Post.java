@@ -2,6 +2,7 @@ package com.in28minutes.rest.webservices.restfulwebservices.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
 
 @Entity
 public class Post {
@@ -9,6 +10,7 @@ public class Post {
     @GeneratedValue
     private Integer id;
 
+    @Size(min=10)
     private String description;
 
     @ManyToOne(fetch = FetchType.LAZY) //post여러개가 같은 user를 가질 수 있다.
@@ -31,6 +33,14 @@ public class Post {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Override
