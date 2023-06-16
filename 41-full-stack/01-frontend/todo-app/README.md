@@ -74,4 +74,8 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
             앱 컴포넌트의 단위 테스트 파일
 
 
+# React Component
 
+------
+
+- React에서 처음으로 로드되는 컴포넌트는 앱 컴포넌트이다.
