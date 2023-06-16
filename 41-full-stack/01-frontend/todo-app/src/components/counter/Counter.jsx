@@ -19,7 +19,7 @@ export default function Counter(){
             <CounterButton by={1} increamentCounterParentFunction={increamentCounterParentFunction} decreaseCounterParentFunction={decreaseCounterParentFunction}/>
             <CounterButton by={2} increamentCounterParentFunction={increamentCounterParentFunction} decreaseCounterParentFunction={decreaseCounterParentFunction}/>
             <CounterButton by={5} increamentCounterParentFunction={increamentCounterParentFunction} decreaseCounterParentFunction={decreaseCounterParentFunction}/>
-            <CounterButton></CounterButton>
+        
         </div> 
     )
 }
@@ -45,7 +45,6 @@ export function CounterButton({by, increamentCounterParentFunction, decreaseCoun
     
     return (
         <div className="Counter">
-            <span className="count">{count}</span>
             <div></div>
             <button className="counterButton" 
                     onClick={incrementCountFunction}  
