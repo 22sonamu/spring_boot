@@ -89,3 +89,38 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 - React Hooks의 등장으로, 함수 컴포넌에서도 State를 사용할 수 있게 되었다.
 - 좀더 간결한 함수형 컴포넌트를 추천한다.
 
+# JSX (JavaScript XML)
+
+-------
+
+~~~
+React에서 사용하는 JavaScript를 확장한 문법
+~~~
+
+- HTML보다 엄격하다.
+- 닫는태그 필수 , 최상위 태그는 한가지만 있어야함
+
+
+
+- 브라우저마다 최신 기능에 대한 지원 수준이 다르다.
+    
+    - JS 코드에 대한 호환성을 어떻게 보장할까?
+        
+        - Solution : Babel 
+            - **JSX를 JS로 변환함**
+            - 최신 JS와 오래된 브라우저 간의 호환을 보장
+
+- JSX
+
+    - () : 복잡한 JSX 값을 반환할때 감싼다.
+    ~~~JSX
+    function SecondComponent(){
+        return (
+            <div className="SecondComponent">Second Component</div>
+            );
+        }
+    ~~~
+
+    - Component는 대문자로 시작해야한다.
+
+    - HTML에는 소문자를 사용한다 (ex. div)
