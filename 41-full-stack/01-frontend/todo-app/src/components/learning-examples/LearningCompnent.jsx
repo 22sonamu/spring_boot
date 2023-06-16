@@ -3,6 +3,7 @@ import FirstComponent, {FifthComponent} from './FirstComponent'
 import SecondComponent from './SecondComponent'
 import ThirdComponent from './ThirdComponent'
 import FourthComponent from './FourthComponent'
+import LearningJavaScript from './LearningJavaScript';
 //중괄호를 쓰지 않으면 , 무조건 기본 컴포넌트가 나온다 (default import)
 //import FifthComponentfrom './FirstComponent'
 //이렇게 작성하여도 FirstComponent가 사용된다.
@@ -17,6 +18,7 @@ export default function LearningComponent() {
         <ThirdComponent></ThirdComponent>
         <FourthComponent></FourthComponent>
         <FifthComponent/>
+        <LearningJavaScript></LearningJavaScript>
       </div>
     );
   }
