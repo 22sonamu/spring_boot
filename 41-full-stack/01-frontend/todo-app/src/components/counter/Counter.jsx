@@ -11,15 +11,22 @@ export default function Counter(){
         console.log(count);
     }
 
+    function decreaseCountFunction(){
+        setCount(count-1);
+        console.log(count);
+    }
+
 
     return (
         <div className="Counter">
             <span className="count">{count}</span>
             <div></div>
             <button className="counterButton" 
-                    onClick={incrementCountFunction}
-                               
+                    onClick={incrementCountFunction}  
                     >+1</button>
+            <button className="counterButton" 
+                    onClick={decreaseCountFunction}  
+                    >-1</button>
         </div>
     )
 }
