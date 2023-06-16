@@ -74,8 +74,18 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
             앱 컴포넌트의 단위 테스트 파일
 
 
-# React Component
 
-------
+# 함수 컴포넌트 / 클래스 컴포넌트
 
-- React에서 처음으로 로드되는 컴포넌트는 앱 컴포넌트이다.
+-----
+
+## State
+
+~~~
+특정 컴포넌트에 대한 데이터
+~~~
+
+- 리액트 초기 버전에선 클래스 컴포넌트만 State를 가질 수 있었다.
+- React Hooks의 등장으로, 함수 컴포넌에서도 State를 사용할 수 있게 되었다.
+- 좀더 간결한 함수형 컴포넌트를 추천한다.
+
