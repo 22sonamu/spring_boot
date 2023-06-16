@@ -124,3 +124,15 @@ React에서 사용하는 JavaScript를 확장한 문법
     - Component는 대문자로 시작해야한다.
 
     - HTML에는 소문자를 사용한다 (ex. div)
+
+# State
+
+~~~
+리액트의 내장 객체로써, 컴포넌트의 데이터를 저장하는데 사용된다.
+~~~
+
+### userState
+
+
+- State 값
+- State 값을 업데이트 하는 함수
