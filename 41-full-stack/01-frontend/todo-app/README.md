@@ -16,8 +16,7 @@ You may also see any lint errors in the console.
 
 ### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- unit 단위 테스트를 할수있다.
 
 ### `npm run build`
 
@@ -29,42 +28,50 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+- 최적화된 프로덕션 빌드를 생성한다. (프로덕션 배포시 만들어지는 파일 3개)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+    - main.716e730f.js
+    - 787.2843ca88.chunk.js
+    - main.073c9b0a.css 
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+# React의 파일 구조
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+---------
 
-## Learn More
+- package.json  
+    의존성을 정의하는 파일 (pom.xml이랑 비슷함)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- node_modules  
+    다운로드된 의존성들이 존재함
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- React Initialization  
 
-### Code Splitting
+    - public/index.html   
+        브라우저에서 가장 먼저 로딩되는 페이지
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+    - src/index.js   
 
-### Analyzing the Bundle Size
+        index.html에서 불러와지는 js  
+        React 앱을 초기화하고, 앱 컴포넌트를 로드한다. 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+        ~~~react
+        const root = ReactDOM.createRoot(document.getElementById('root')); //루트로 이동해서
+                root.render(
+                <React.StrictMode>
+                    <App /> //앱 컴포넌트를 로드한다.
+                </React.StrictMode>
+                );
+        ~~~
 
-### Making a Progressive Web App
+    - src/App.js   
+        앱 컴포넌트의 Code
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+        - src/App.css   
+            앱 컴포넌트 스타일링
 
-### Advanced Configuration
+        - src/App.test.js  
+            앱 컴포넌트의 단위 테스트 파일
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
