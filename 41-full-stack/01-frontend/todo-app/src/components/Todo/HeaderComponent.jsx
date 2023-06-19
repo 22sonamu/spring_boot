@@ -4,7 +4,13 @@ export default function HeaderComponent(){
 
     //const authContext = useContext(AuthContext);
     const authContext = useAuth();
-    console.log(authContext.number);
+    const isAuthenticated = authContext.isAuthenticated
+
+    function logout(){
+        authContext.setAuthenticated(false)
+    }
+
+    //console.log(authContext);
     return (
 
         <header className="border-bottom border-light border-5 mb-5 p-2 ">
@@ -15,13 +21,13 @@ export default function HeaderComponent(){
                         {/* Link는 Router 요소에만 사용가능하다.(HeaderComponent) */}
                         <div className='collapse navbar-collapse'>
                             <ul className='navbar-nav'>
-                                <li className='nav-item'><Link className='nav-link' to='/welcome/in28minutes'>Home</Link></li>
-                                <li className='nav-item'><Link className='nav-link' to='/todos'>Todos</Link></li>
+                                {isAuthenticated && <li className='nav-item'><Link className='nav-link' to='/welcome/in28minutes'>Home</Link></li>}
+                                {isAuthenticated &&  <li className='nav-item'><Link className='nav-link' to='/todos'>Todos</Link></li>}
                             </ul>
                         </div>
                         <ul className='navbar-nav'>
-                                 <li className='nav-item'><Link className='nav-link' to='/login'>Login</Link></li>
-                                <li className='nav-item'><Link className='nav-link' to='/logout'>Logout</Link></li>
+                                 {!isAuthenticated && <li className='nav-item'><Link className='nav-link' to='/login'>Login</Link></li>}
+                                {isAuthenticated && <li className='nav-item'><Link className='nav-link' to='/logout' onClick={logout}>Logout</Link></li>}
                         </ul>
 
                     </nav>
