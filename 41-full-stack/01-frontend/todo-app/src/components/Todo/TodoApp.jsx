@@ -60,8 +60,9 @@ function LoginComponent(){
 
     return(
         <div className="Login">
-            <SuccessMessageComponent/>
-            <ErrorMessageComponent/>
+            {/* showSuccessMessage가 true이면 뒤의 div를 보여주겠다는 뜻 */}
+            {showSuccessMessage && <div className='successMessage'>Authenticated Successfully</div>}
+            {showErrorMessage && <div className='errorMessage'>Authenticated Failed</div>}
             <div className="LoginForm">
                 <div>
                     <label>User Name</label>
