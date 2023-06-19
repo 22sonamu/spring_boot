@@ -4,8 +4,9 @@ import {BrowserRouter, Routes, Route, useNavigate, useParams, Link} from 'react-
 export default function TodoApp(){
     return (    
         <div className="TodoApp">
-            <HeaderComponent></HeaderComponent>
+            
             <BrowserRouter>
+            <HeaderComponent></HeaderComponent>
                 <Routes>
                     <Route path='/' element={<LoginComponent/>}/>
                     <Route path='/login' element={<LoginComponent/>}/>
@@ -15,8 +16,9 @@ export default function TodoApp(){
                     <Route path='/todos' element={<ListTodosComponent/>}></Route>
                     <Route path='/logout' element={<LogoutComponent/>}/>
                 </Routes>
+            <FooterComponent></FooterComponent>    
             </BrowserRouter>
-            <FooterComponent></FooterComponent>
+            
         </div>
     );
 }
@@ -153,17 +155,40 @@ function ListTodosComponent(){
 
 function HeaderComponent(){
     return (
-        <div className="header">
-            Header <hr />
-        </div>
+        
+        <header className="border-bottom border-light border-5 mb-5 p-2 ">
+            <div className='container'>
+                <div className='row'>
+                    <nav className='navbar navbar-expand-lg'>
+                        <a className='navbar-brand ms-2 fs-2 fw-bold text-black' href='https://www.in28minutes.com'>in28minutes</a>
+                        {/* Link는 Router 요소에만 사용가능하다.(HeaderComponent) */}
+                        <div className='collapse navbar-collapse'>
+                            <ul className='navbar-nav'>
+                                <li className='nav-item'><Link className='nav-link' to='/welcome/in28minutes'>Home</Link></li>
+                                <li className='nav-item'><Link className='nav-link' to='/todos'>Todos</Link></li>
+                            </ul>
+                        </div>
+                        <ul className='navbar-nav'>
+                                 <li className='nav-item'><Link className='nav-link' to='/login'>Login</Link></li>
+                                <li className='nav-item'><Link className='nav-link' to='/logout'>Logout</Link></li>
+                        </ul>
+
+                    </nav>
+                </div>
+            </div>
+        </header>
     )
 }
 
 function FooterComponent(){
     return (
-        <div className="footer">
+        <footer className="footer">
+
+            <div className='container'>
+                Your Footer
+            </div>
             <hr />
-         </div>
+         </footer>
     )
 }
 
