@@ -18,6 +18,21 @@ export default function AuthProvider({children}){
 
     const [isAuthenticated, setAuthenticated] = useState(false);
 
+    function login(username, password){
+
+        if(username==="in28minutes" && password==="dummy"){
+            setAuthenticated(true)
+            return true;
+        }else{
+            setAuthenticated(false)
+            return false;        
+        }
+
+    }
+
+    function logout(){
+        setAuthenticated(false)
+    }
     //const valueToShared = {number , isAuthenticated, setAuthenticated}
 
     //이 객체는 
@@ -33,7 +48,7 @@ export default function AuthProvider({children}){
 
 
     return (
-        <AuthContext.Provider value={{number , isAuthenticated, setAuthenticated}}>
+        <AuthContext.Provider value={{number , isAuthenticated, login, logout}}>
             {children}
         </AuthContext.Provider>
     )
