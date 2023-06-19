@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import './TodoApp.css'
-import {BrowserRouter, Routes, Route, useNavigate} from 'react-router-dom'
+import {BrowserRouter, Routes, Route, useNavigate, useParams} from 'react-router-dom'
 export default function TodoApp(){
     return (    
         <div className="TodoApp">
@@ -8,7 +8,7 @@ export default function TodoApp(){
                 <Routes>
                     <Route path='/' element={<LoginComponent/>}></Route>
                     <Route path='/login' element={<LoginComponent/>}></Route>
-                    <Route path='/welcome' element={<WelcomeComponent/>}></Route>
+                    <Route path='/welcome/:username' element={<WelcomeComponent/>}></Route>
                     {/* 위 루트중 아무곳에도 해당하지않으면  */}
                     <Route path='*' element={<ErrorComponent/>}></Route>
                 </Routes>
@@ -41,7 +41,7 @@ function LoginComponent(){
             console.log("success")
             setShowSuccessMessage(true)
             setShowErrorMessage(false)
-            navigate('/welcome')
+            navigate(`/welcome/${username}`)
         }else{
             console.log("fail")
             setShowErrorMessage(true)
@@ -75,9 +75,17 @@ function LoginComponent(){
 
 
 function WelcomeComponent(){
+
+    const {username} = useParams()
+
+    console.log(username)
+
+    // const params = useParams()
+    // console.log(params.username) //위와 같은 뜻임
+
     return(
         <div>
-            <h1>Welcome in28minutes</h1>
+            <h1>Welcome {username}</h1>
             <div className="Welcome">
                 Welcome Component
             </div>
