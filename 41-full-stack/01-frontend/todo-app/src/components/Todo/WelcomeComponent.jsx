@@ -4,8 +4,6 @@ export default function WelcomeComponent(){
 
     const {username} = useParams()
 
-    console.log(username)
-
     // const params = useParams()
     // console.log(params.username) //위와 같은 뜻임
 
