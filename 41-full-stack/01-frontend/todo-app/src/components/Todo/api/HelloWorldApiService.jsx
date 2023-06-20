@@ -23,3 +23,10 @@ export const retrieveHelloWorldPathVariable = (username) => apiClient.get(`/hell
         Authorization : 'Basic aW4yOG1pbnV0ZXM6ZHVtbXk=' //인코딩된 사용자 id / password
     }
 })
+
+
+export const executeBasicAuthenticationService = (token) => apiClient.get(`/basicauth`, {
+    headers: {
+        Authorization : token
+    }
+})
