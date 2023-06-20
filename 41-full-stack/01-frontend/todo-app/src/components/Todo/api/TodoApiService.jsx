@@ -8,5 +8,6 @@ const apiClient = axios.create(
     }
 )
 
-//이렇게도 사용할수있다.
 export const retrieveAllTodosForUsername = (username) => apiClient.get(`/users/${username}/todos`)
+
+export const deleteTodoApi = (username, id) => apiClient.delete(`/users/${username}/todos/${id}`)
