@@ -2,6 +2,7 @@
 
 import { createContext, useState, useContext} from "react";
 import {executeBasicAuthenticationService} from '../api/HelloWorldApiService'
+import { apiClient } from "../api/ApiClient";
 
 export const AuthContext = createContext()
 
@@ -45,6 +46,14 @@ export default function AuthProvider({children}){
                 setAuthenticated(true)
                 setUsername(username)
                 setToken(baToken)
+                //api Client를 거치는 모든 요청에 interceptor를 생성하고 특수한 로직을 적용시킨다.
+                apiClient.interceptors.request.use(
+                    (config) => {
+                        console.log('intercepting and adding a token')
+                        config.headers.Authorization = baToken
+                        return config
+                    }
+                )
                 return true
             }else{
                 logout()
