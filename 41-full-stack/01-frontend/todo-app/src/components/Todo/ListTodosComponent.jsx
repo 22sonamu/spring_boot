@@ -45,6 +45,10 @@ export default function ListTodosComponent(){
      
     }
 
+    function addNewTodo(id){
+        navigate('/todo/-1')
+    }
+
     useEffect (
         () => refreshTodos(), [] //첫번째에만 로딩하겠다는 뜻
     )
@@ -82,6 +86,7 @@ export default function ListTodosComponent(){
                     </tbody>
                 </table>
             </div>
+            <div className="btn btn-success m-5" onClick={addNewTodo}>Add New Todo</div>
         </div>
     )
 }
