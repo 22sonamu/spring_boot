@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { deleteTodoApi, retrieveAllTodosForUsername } from "./api/TodoApiService"
 import { useAuth } from "./Security/AuthContext"
+import { useNavigate } from "react-router-dom"
 
 export default function ListTodosComponent(){
     const today = new Date()
@@ -9,6 +10,7 @@ export default function ListTodosComponent(){
     console.log(today.toDateString)
     const [todos, setTodos] = useState([])
     const [message, setMessage]  = useState(null)
+    const navigate = useNavigate()
 
     function refreshTodos(){
         retrieveAllTodosForUsername(username)
@@ -37,6 +39,12 @@ export default function ListTodosComponent(){
         )
     }
 
+    function updateTodo(id){
+        console.log('clicked' + id)
+        navigate(`/todo/${id}`)
+     
+    }
+
     useEffect (
         () => refreshTodos(), [] //첫번째에만 로딩하겠다는 뜻
     )
@@ -53,6 +61,7 @@ export default function ListTodosComponent(){
                             <th>is Done</th>
                             <th>Target Date</th>
                             <th>Delete</th>
+                            <th>Update</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -64,6 +73,7 @@ export default function ListTodosComponent(){
                                         <td>{todo.done.toString()}</td>
                                         <td>{todo.targetDate}</td>
                                         <td><button className="btn btn-warning" onClick={() => deleteTodo(todo.id)}>Delete</button></td>
+                                        <td><button className="btn btn-success" onClick={() => updateTodo(todo.id)}>Update</button></td>
                                     </tr>
                                 )
                             )
