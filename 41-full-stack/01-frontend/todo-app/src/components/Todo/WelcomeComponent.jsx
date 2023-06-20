@@ -1,6 +1,6 @@
 import {Link, useParams} from 'react-router-dom';
-import axios from 'axios'
 import { useState } from 'react';
+import { retrieveHelloWorldBean, retrieveHelloWorldPathVariable } from './api/HelloWorldApiService';
 export default function WelcomeComponent(){
 
     const {username} = useParams()
@@ -9,22 +9,8 @@ export default function WelcomeComponent(){
     // console.log(params.username) //위와 같은 뜻임
 
     function callHelloWorldRestApi(){
-        //axios
-        //localhost:3000 -> localhost:8080 호출 (Cross Origin Request) -> denied
-        //Allow all requests only from http://localhost:3000 이라고 설정해줘야한다. (rest api project에서)
-        // axios.get('http://localhost:8080/hello-world')
-        //     .then(
-        //         //만약 response가 돌아오면 successfulResponse를 실행한다.
-        //         (response) => successfulResponse(response)
-        //     )
-        //     .catch(
-        //         (error) => errorResponse(error)
-        //     ) 
-        //     .finally( // 요청 성공 여부와 무관
-        //         () => console.log('cleanup')
-        //     )
 
-        axios.get('http://localhost:8080/hello-world-bean')
+        retrieveHelloWorldPathVariable('mara')
         .then(
             //만약 response가 돌아오면 successfulResponse를 실행한다.
             (response) => successfulResponse(response)
@@ -35,7 +21,6 @@ export default function WelcomeComponent(){
         .finally( // 요청 성공 여부와 무관
             () => console.log('cleanup')
         )
-
     }
     function successfulResponse(response){
         console.log(response)
@@ -56,7 +41,7 @@ export default function WelcomeComponent(){
                 <button className='btn btn-success m-S' onClick={callHelloWorldRestApi}>Call Hello World REST API</button>
             </div>
             <div className='text-info'>
-                {}
+                {message}
             </div>
         
         </div>
