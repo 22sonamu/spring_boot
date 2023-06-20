@@ -34,12 +34,27 @@ export default function AuthProvider({children}){
 
     // }
 
-    function login(username, password){
+    async function login(username, password){
         const baToken = 'Basic ' + window.btoa(username + ":" + password); //base64 인코딩
-        executeBasicAuthenticationService(baToken)
-        .then(response => console.log(response))
-        .catch(error => console.log(error))
+        try{
+            const response = await executeBasicAuthenticationService(baToken)
 
+            if(response.status == 200){
+                setAuthenticated(true)
+                setUsername(username)
+                return true
+            }else{
+                setAuthenticated(false)
+                setUsername(null)
+                return true
+            }
+        }catch(error){
+            setAuthenticated(false)
+            setUsername(null)
+            return false
+        }
+
+        console.log("test") //이 구문은 위의 코드가 실행되기 전에 실행될수있다. -> async method로 만들어야함 (await + async)
         setAuthenticated(false)
 
     }
