@@ -146,3 +146,33 @@ React에서 사용하는 JavaScript를 확장한 문법
     - 페이지가 로딩되면, 이에대한 첫번째 버전의 가상 DOM을 생성한다.
     - 상태가 업데이트되면, 해당 컴포넌트는 다시 랜더링하고 두번째 버전의 가상 DOM을 생성한다.
     - 리액트는 DOM V1 과 DOM V2를 비교해 차이점을 파악하고, 달라진 부분을 HTML페이지에 적용한다.
+
+# Option 요청 (프리플라이트 요청)
+
+---------
+
+~~~
+    request type : OPTIONS
+    Content type : preflight 
+~~~
+
+Option 요청은 서버와 브라우저가 통신하기 위한 통신 옵션을 확인하기 위해 사용한다.  
+서버가 어떤 method, header , content type 을 지원하는지 알 수 있다.   
+브라우저가 요청할 메서드와 헤더를 허용하는지 미리 확인한 후 , 서버가 지원할 경우에 통신한다. (효율적인 통신)  
+허용되지 않는 요청의 경우 405(Method Not Allowd) 에러를 발생시킨다.
+
+**CORS 상황에서도 Option 요청이 발생한다.**   
+**먼저 Option 요청을 보내서 응답 정보를 사용 가능한지 파악하기 때문이다.**
+
+### 발생 조건
+1. GET , HEAD , POST 요청이 아닌경우
+2. Custom HTTP Header가 존재하는 경우 
+3. Content-type 이 application/x-www-form-urlencoded , multipart/form-data , text/plain 이 아닌경우
+
+
+### 해결 방법
+
+preflight를 발생시키지 않게 하여 simple request를 요청한다.
+
+1. CORS 상황이 되지 않도록 웹서버와 동일한 오리진을 사용한다.
+2. preflight 발생 조건을 없앤다. 
