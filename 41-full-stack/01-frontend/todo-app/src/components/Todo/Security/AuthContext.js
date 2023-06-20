@@ -20,6 +20,8 @@ export default function AuthProvider({children}){
 
     const [username, setUsername] = useState(null)
 
+    const [token , setToken] = useState(null)
+
     // function login(username, password){
 
     //     if(username==="in28minutes" && password==="dummy"){
@@ -42,25 +44,25 @@ export default function AuthProvider({children}){
             if(response.status == 200){
                 setAuthenticated(true)
                 setUsername(username)
+                setToken(baToken)
                 return true
             }else{
-                setAuthenticated(false)
-                setUsername(null)
+                logout()
                 return true
             }
         }catch(error){
-            setAuthenticated(false)
-            setUsername(null)
+            logout()
             return false
         }
 
-        console.log("test") //이 구문은 위의 코드가 실행되기 전에 실행될수있다. -> async method로 만들어야함 (await + async)
+        console.log("test") //이 구문은 위의 코드가 실행되기 전에 실행될수있다. -> async method로 만들어야함 (await + async) -> 상위 method 도 async 가 되어야함 (Login Component - handleSubmit)
         setAuthenticated(false)
 
     }
 
     function logout(){
         setAuthenticated(false)
+        setToken(null)
     }
     //const valueToShared = {number , isAuthenticated, setAuthenticated}
 
@@ -77,7 +79,7 @@ export default function AuthProvider({children}){
 
 
     return (
-        <AuthContext.Provider value={{isAuthenticated, login, logout, username}}>
+        <AuthContext.Provider value={{isAuthenticated, login, logout, username, token}}>
             {children}
         </AuthContext.Provider>
     )
