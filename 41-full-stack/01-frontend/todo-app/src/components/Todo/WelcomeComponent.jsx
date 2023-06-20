@@ -1,16 +1,18 @@
 import {Link, useParams} from 'react-router-dom';
 import { useState } from 'react';
 import { retrieveHelloWorldBean, retrieveHelloWorldPathVariable } from './api/HelloWorldApiService';
+import { useAuth } from './Security/AuthContext';
 export default function WelcomeComponent(){
 
     const {username} = useParams()
     const [message, setMessage] = useState(null)
+    const authContext = useAuth()
     // const params = useParams()
     // console.log(params.username) //위와 같은 뜻임
 
     function callHelloWorldRestApi(){
 
-        retrieveHelloWorldPathVariable('mara')
+        retrieveHelloWorldPathVariable('mara', authContext.token)
         .then(
             //만약 response가 돌아오면 successfulResponse를 실행한다.
             (response) => successfulResponse(response)
