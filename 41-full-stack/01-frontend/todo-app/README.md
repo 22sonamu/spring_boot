@@ -176,3 +176,51 @@ preflight를 발생시키지 않게 하여 simple request를 요청한다.
 
 1. CORS 상황이 되지 않도록 웹서버와 동일한 오리진을 사용한다.
 2. preflight 발생 조건을 없앤다. 
+
+
+# JWT 
+
+---------
+
+~~~
+    Json Web Token. 토큰을 만드는 표준 시스템을 정의한다.
+~~~
+
+
+- Basic Authentication
+    
+    - 인증 기한 없음
+    - User Detail이 담겨있지 않음
+    - Decode가 쉬움 
+
+
+따라서 실제 서비스에서는 Basic Authentication을 사용하지 않고 Json Web Token을 사용한다.
+
+- JWT
+
+    - Header 
+
+        - Type : JWT
+        - Hashing Algorithm : HS512
+
+    - Payload
+
+        - Standard Attributes
+        
+            - iss : JWT 토큰을 발행한 issuer
+            - sub : 주제
+            - aud : 목표로 하는 대상
+            - iat : 토큰이 발행된 시기
+
+        - Custom Attribute
+
+    - Signature
+
+        - your-256-bit-sercret을 추가하고 , 토큰이 유효한지 아닌지 확인할 수 있다.
+
+- JWT Flow
+
+    
+
+    
+
