@@ -16,7 +16,7 @@ public class BasicAuthenticationSecurityConfiguration {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         //basic authentication
         //disabling csrf (세션이 있다면 csrf를 활성화시켜야함) 그러나 REST api엔 세션이 필요하지 않다.
-        http.authorizeHttpRequests(auth -> auth.antMatchers(HttpMethod.OPTIONS, "/").permitAll() //모든 url의 option method를 허락한다.
+        http.authorizeHttpRequests(auth -> auth.antMatchers(HttpMethod.OPTIONS, "/**").permitAll() //모든 url의 option method를 허락한다.
                 .anyRequest().authenticated());
         http.httpBasic(Customizer.withDefaults()); //기본 인증 - username/password
         //상태가 없는 세션을 설정한다.
