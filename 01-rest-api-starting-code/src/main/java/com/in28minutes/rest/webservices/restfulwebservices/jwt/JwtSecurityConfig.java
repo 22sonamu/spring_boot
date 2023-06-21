@@ -50,8 +50,7 @@ public class JwtSecurityConfig {
         // https://github.com/spring-projects/spring-security/issues/12310
         return httpSecurity
                 .authorizeHttpRequests(auth -> auth
-                        .antMatchers("/authenticate").permitAll()
-                        .antMatchers(String.valueOf(PathRequest.toH2Console())).permitAll() // h2-console is a servlet and NOT recommended for a production
+                        .antMatchers("/authenticate/**", "/h2-console/**").permitAll()// h2-console is a servlet and NOT recommended for a production
                         .antMatchers(HttpMethod.OPTIONS,"/**")
                         .permitAll()
                         .anyRequest()
