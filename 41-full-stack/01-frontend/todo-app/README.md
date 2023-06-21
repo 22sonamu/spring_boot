@@ -220,7 +220,9 @@ preflight를 발생시키지 않게 하여 simple request를 요청한다.
 
 - JWT Flow
 
-    
+    1. http://localhost:8080/authenticate 로 post 요청 ( username & password ) 하여 token 전달받기
+    2. token 사용하여 다른 api 와 통신
+
 
     
 
