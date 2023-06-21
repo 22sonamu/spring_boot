@@ -1,7 +1,7 @@
 //1. Create a Context
 
 import { createContext, useState, useContext} from "react";
-import {executeBasicAuthenticationService} from '../api/HelloWorldApiService'
+import {executeJwtAuthenticationService} from '../api/AuthenticationApiService'
 import { apiClient } from "../api/ApiClient";
 
 export const AuthContext = createContext()
@@ -37,20 +37,53 @@ export default function AuthProvider({children}){
 
     // }
 
+    // async function login(username, password){
+    //     const baToken = 'Basic ' + window.btoa(username + ":" + password); //base64 인코딩
+    //     try{
+    //         const response = await executeBasicAuthenticationService(baToken)
+
+    //         if(response.status == 200){
+    //             setAuthenticated(true)
+    //             setUsername(username)
+    //             setToken(baToken)
+    //             //api Client를 거치는 모든 요청에 interceptor를 생성하고 특수한 로직을 적용시킨다.
+    //             apiClient.interceptors.request.use(
+    //                 (config) => {
+    //                     console.log('intercepting and adding a token')
+    //                     config.headers.Authorization = baToken
+    //                     return config
+    //                 }
+    //             )
+    //             return true
+    //         }else{
+    //             logout()
+    //             return true
+    //         }
+    //     }catch(error){
+    //         logout()
+    //         return false
+    //     }
+
+    //     console.log("test") //이 구문은 위의 코드가 실행되기 전에 실행될수있다. -> async method로 만들어야함 (await + async) -> 상위 method 도 async 가 되어야함 (Login Component - handleSubmit)
+    //     setAuthenticated(false)
+
+    // }
+
+
     async function login(username, password){
-        const baToken = 'Basic ' + window.btoa(username + ":" + password); //base64 인코딩
         try{
-            const response = await executeBasicAuthenticationService(baToken)
+            const response = await executeJwtAuthenticationService(username, password)
 
             if(response.status == 200){
+                const jwtToken = 'Bearer ' + response.data.token
                 setAuthenticated(true)
                 setUsername(username)
-                setToken(baToken)
+                setToken(jwtToken)
                 //api Client를 거치는 모든 요청에 interceptor를 생성하고 특수한 로직을 적용시킨다.
                 apiClient.interceptors.request.use(
                     (config) => {
                         console.log('intercepting and adding a token')
-                        config.headers.Authorization = baToken
+                        config.headers.Authorization = jwtToken
                         return config
                     }
                 )
