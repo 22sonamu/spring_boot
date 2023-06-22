@@ -41,3 +41,38 @@
 6. 설계의 개방성을 보장한다.
 
     - 개방형 보안 설계를 구축하고 개방형 보안 표준을 사용해야 한다. (ex. JWT)
+
+
+# Spring Security Layer
+
+---------
+
+
+Request -> **Spring Sercurity** -> Dispatcher Servlet -> Controller    
+
+
+
+# Spring Security filter chain이 제공하는 기능
+
+---------------
+
+1. Authentication : 인증된 유저인지?
+2. Authorization : user가 올바른 접근 권한을 가지고있는지?
+3. Other : 
+   
+   - CorsFilter
+   - CsrfFilter(Csrf - 사이트 간 요청 위조) : 사용자가 세션에 정보를 담은 채로 악성 브라우저로 이동하여 정보를 탈취당하는것을 방지
+   - ExceptionTranslationFilter : 인증과 관련된 예외가 발생할때마다 사용자에게 적절한 HTTP 응답으로 전달
+
+
+이러한 필터들이 지정한 순서대로 실행된다.
+
+1. Basic Check Filters - CORS , CSRF, ...
+2. Authentication Filters
+3. Authorization Filters
+
+
+
+
+
+
