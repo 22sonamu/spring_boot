@@ -24,7 +24,7 @@ public class TodoResource {
     }
 
     @PostMapping("/users/{username}/todos")
-    public void createTodosForSpecificUser(@PathVariable String username, @RequestBody Todo todo){ //기본 인증해도 동작하지 않는다.
+    public void createTodosForSpecificUser(@PathVariable String username, @RequestBody Todo todo){ //기본 인증해도 동작하지 않는다. (csrf 토큰이 있어야한다.)
         logger.info("Create {} for {}", todo, username);
     }
 }
