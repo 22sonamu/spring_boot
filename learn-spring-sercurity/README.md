@@ -173,6 +173,20 @@ Spring Security 는 기본적으로 Form 인증을 사용한다. (username, pass
 
     - ex ) RSA
 
+    - 종류
+
+        - 대칭 키 암호화 : 동일한 키를 이용하여 암호화 / 복호화 한다.
+            
+            - 올바른 알고리즘을 선택해야한다.
+            - 데이터 암호화 키를 안전하게 보관해야 한다.
+            - 암호화 키를 공유할 방법도 중요하다.
+        
+        - 공개 키 암호화(비대칭 키) : 공개 키를 이용해 데이터를 암호화하고, 비밀키를 이용해 복호화한다.
+      
+            - JWT에서는 보통 비대칭 키를 쓴다.
+      
+          
+
 
 # Spring Security에서의 Password 처리
 
@@ -192,4 +206,27 @@ Spring Security 는 기본적으로 Form 인증을 사용한다. (username, pass
         - PasswordEncoder = BCryptPasswordEncoder
 
 
+
+
+# JWT Flow
+
+
+
+------------ 
+
+
+1. create JWT 
+
+    - 세부 정보 Encoding 이 필요하다.
+   
+        - 사용자 자격증명 인코딩
+        - 사용자 데이터 인코딩
+        - 키 쌍 (비대칭 키 쌍)
+
+2. 요청 헤더의 일부로써 JWT 전송
+
+
+3. JWT 가 서버에서 확인됨
+
+    - JWT 를 디코딩하여 확인
 
