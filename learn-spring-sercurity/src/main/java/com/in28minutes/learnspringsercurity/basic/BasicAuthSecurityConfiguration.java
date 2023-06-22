@@ -5,12 +5,18 @@ import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+
+import javax.sql.DataSource;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 
@@ -26,22 +32,52 @@ public class BasicAuthSecurityConfiguration {
         http.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)); //세션을 사용하지 않는다.
         http.httpBasic(withDefaults());
         http.csrf().disable(); //csrf 설정 disable
+        http.headers().frameOptions().sameOrigin(); //h2는 frame tag을 사용하는데 , Spring Security는 자동으로 막는다. //same Origin에서 요청이 올때, frame을 허용하는 옵션이다.
         return http.build();
     }
 
+//    @Bean
+//    public UserDetailsService userDetailsService(){ //사용자 정보 가져오는 Interface
+//        var user = User.withUsername("in28minutes")
+//                .password("{noop}dummy")//{noop} -> 인코딩 x
+//                .roles("USER")
+//                .build();
+//
+//        var admin = User.withUsername("admin")
+//                .password("{noop}dummy")
+//                .roles("ADMIN")
+//                .build();
+//
+//        return new InMemoryUserDetailsManager(user, admin);
+//
+//    }
+
     @Bean
-    public UserDetailsService userDetailsService(){ //사용자 정보 가져오는 Interface
+    public DataSource dataSource(){
+
+        return new EmbeddedDatabaseBuilder()//새로운 임베디드 데이터베이스를 만든다.
+                .setType(EmbeddedDatabaseType.H2) //데이터베이스 타입은 H2
+                .addScript(JdbcDaoImpl.DEFAULT_USER_SCHEMA_DDL_LOCATION).build(); //자체 데이터 소스
+
+
+    }
+
+        @Bean
+    public UserDetailsService userDetailsService(DataSource dataSource){
         var user = User.withUsername("in28minutes")
-                .password("{noop}dummy")//{noop} -> 인코딩 x
+                .password("{noop}dummy")
                 .roles("USER")
                 .build();
 
         var admin = User.withUsername("admin")
                 .password("{noop}dummy")
-                .roles("ADMIN")
+                .roles("ADMIN", "USER")
                 .build();
 
-        return new InMemoryUserDetailsManager(user, admin);
+        var jdbcUserDetailsManager = new JdbcUserDetailsManager(dataSource);
+        jdbcUserDetailsManager.createUser(user);
+        jdbcUserDetailsManager.createUser(admin); //admin , admin권한 , admin, user권한 이렇게 두가지의 데이터가 authorities 테이블에 저장
+        return jdbcUserDetailsManager;
 
     }
 }
