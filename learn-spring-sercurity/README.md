@@ -121,5 +121,19 @@ Spring Security 는 기본적으로 Form 인증을 사용한다. (username, pass
 
 - 상태를 사용하지 않는 REST API라면, CSRF 사용 해제한다.
 
+
+# CORS
+
+----------
+
+- 브라우저에서 현재 오리진 외부에 있는 Ajax 호출을 보내는것을 허용하지 않는다.
+- 허용 오리진을 설정해줄수있다.
+
+   - 글로벌 설정 : 모든 컨트롤러, 모든 리소스에 적용된다. addCorsMapping 콜백 메서드로 설정한다.
+   - 로컬 설정 : 특정 메서드나 특정 컨트롤러 클래스에 @ClassOrigin 설정 
+  
+      - 기본값은 모두 허용 
+      - @ClassOrigin(origins="http://www.~~") 로 허용 오리진 설정해줄수도있음
+
         
 
