@@ -172,3 +172,24 @@ Spring Security 는 기본적으로 Form 인증을 사용한다. (username, pass
     - 키 / 패스워드가 있어야 복호화 할 수 있다. 
 
     - ex ) RSA
+
+
+# Spring Security에서의 Password 처리
+
+
+------
+
+1초를 work factor로 정하여 단방향 함수를 사용한다.(해싱)        
+
+
+- work factor : 시스템에서 패스워드를 확인하는데 걸리는 시간 (패스워드를 해싱하고 저장된 값과 비교하는데 걸리는 시간)
+
+- Spring의 PasswordEncoder : 단방향으로 패스워드 변환을 수행하는 인터페이스 
+
+    - 주의할 점
+
+        - 이름이 Encoder이지만, 단방향 알고리즘이다. 인코딩처럼 실제 텍스트를 구할수 있는것이 아니다.
+        - PasswordEncoder = BCryptPasswordEncoder
+
+
+
