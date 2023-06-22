@@ -19,6 +19,11 @@ import org.springframework.security.web.SecurityFilterChain;
 
 import javax.sql.DataSource;
 
+import java.security.KeyPair;
+import java.security.KeyPairGenerator;
+import java.security.interfaces.RSAPublicKey;
+import java.util.UUID;
+
 import static org.springframework.security.config.Customizer.withDefaults;
 
 @Configuration
@@ -76,5 +81,19 @@ public class JwtSecurityConfiguration {
     public BCryptPasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();    }
 
+    @Bean //1. 키 쌍 만들기
+    public KeyPair keyPair(){
+        try{
+            var keyPairGenerator = KeyPairGenerator.getInstance("RSA");
+            keyPairGenerator.initialize(2048); //2048비트 RSA 암호화 키쌍
+            return keyPairGenerator.generateKeyPair();
+        }catch(Exception e){
+            throw new RuntimeException(e);
+        }
+    }
 
+    @Bean
+    public RSAKey rsaKey(KeyPair keyPair){
+        return new RSAKey.Builder((RSAPublicKey)keyPair.getPublic()).privateKey(keyPair.getPrivate()).keyID(UUID.randomUUID().toString()).build();
+    }
 }

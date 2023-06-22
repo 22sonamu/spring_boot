@@ -235,7 +235,7 @@ Spring Security 는 기본적으로 Form 인증을 사용한다. (username, pass
 ----------
 
 1. Create Key Pair
-2. RSA Key 객체 만들기
+2. 키 쌍을 이용하여 RSA Key 객체 만들기
 3. JWKSource 만들기 (Json Web Key Source)
 4. RSA Public Key 사용하여 Decode
 5. JWKSource 사용하여 Encode
