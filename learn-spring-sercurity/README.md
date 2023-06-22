@@ -73,6 +73,35 @@ Request -> **Spring Sercurity** -> Dispatcher Servlet -> Controller
 
 
 
+# Spring Security - Form 인증
 
 
+----------
+
+Spring Security 는 기본적으로 Form 인증을 사용한다. (username, password)    
+
+- Form 인증 절차
+
+
+   1. username, password 로그인
+   2. Session Cookie가 생성된다.
+   3. 이후 브라우저에서 시작되는 요청에는 이 세션 쿠키가 함께 전송된다. (인증된 사용자라는것을 알수있다.)
+   
+
+# CSRF
+
+
+-----------
+
+1. 사용자가 웹사이트에 로그인
+2. 로그아웃 하기 전 , 악성 사이트로 이동
+3. 악성 사이트는 남아있는 쿠키를 이용하여 사용자 대신 요청을 실행할 수 있다.
+
+- 보호하는 방법
+
+   - 동기화 토큰 패턴
+  
+      - 요청마다 토큰 생성 
+      - 사용자가 탐색하는 페이지 , 수행하는 작업 마다 새 토큰을 생성한다.
+      - Post / Put 같은 업데이트가 있을때 이전 요청에서 생성된 토큰으로 인증한다.
 
