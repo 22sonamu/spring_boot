@@ -109,5 +109,17 @@ Spring Security 는 기본적으로 Form 인증을 사용한다. (username, pass
 
          - 웹페이지 : Form 태그를 사용하면 자동으로 csrf 토큰을 생성해서 보낸다
          - REST API : CSRF Token을 확인하여 요청을 보낼때 담아 보낸다.
+   - SameSite Cookie 
+  
+      - 쿠키를 일정한 사이트로만 전송 할 수 있게 한다.
+         ~~~properties
+        server.servlet.session.cookie.same-site=strict #properties파일에서 설정방법
+        ~~~
+        
+
+
+
+- 상태를 사용하지 않는 REST API라면, CSRF 사용 해제한다.
+
         
 
