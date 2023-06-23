@@ -1,7 +1,11 @@
 package com.in28minutes.learnspringsercurity.resources;
 
+import jakarta.annotation.security.RolesAllowed;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PostAuthorize;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,6 +23,10 @@ public class TodoResource {
     }
 
     @GetMapping("/users/{username}/todos")
+    @PreAuthorize("hasRole('USER') and #username == authentication.name") //pathVariable = 인증에 잇는 이름과 매칭해야함 (in28minutes)
+    @PostAuthorize("returnObject.username =='in28minutes'")
+    @RolesAllowed({"ADMIN", "USER"})
+    @Secured({"ADMIN", "USER"})
     public Todo retrieveTodosForSpecificUser(@PathVariable String username){
         return TODOS_LIST.get(9);
     }

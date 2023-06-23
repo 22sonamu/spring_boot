@@ -272,3 +272,66 @@ Spring Security 는 기본적으로 Form 인증을 사용한다. (username, pass
 
     - SecurityContextHolder > SecurityContext > Authentication > GrantedAuthority
 
+
+### Spring Security 인증 - 두가지 접근법
+
+
+1. 전역 보안
+    
+
+- authorizeHttpRequests에서 설정 가능
+
+2. 메서드 보안
+
+
+
+- @EnableMethodSecurity
+
+
+1. @Pre and @Post Annotation
+
+configuration 파일
+
+~~~java
+@EnableMethodSecurity
+~~~
+
+controller
+~~~java
+@PreAuthorize("hasRole('USER') and #username == authentication.name")
+ ~~~
+
+~~~java
+ @PostAuthorize("returnObject.username =='in28minutes'") //return 객체에 username : in28minutes가 있는지 검색한다.
+~~~
+
+
+2. JSR-250 annotations
+
+
+configuration 파일
+
+~~~java
+@EnableMethodSecurity(jsr250Enabled = true)
+~~~
+
+controller
+~~~java
+@RolesAllowed({"ADMIN", "USER"})
+~~~
+
+
+3. Secured annotation
+
+configuration 파일
+
+~~~java
+@EnableMethodSecurity(jsr250Enabled = true, securedEnabled= true)
+~~~
+
+controller
+
+~~~java
+@Secured({"ADMIN", "USER"})
+~~~
+
