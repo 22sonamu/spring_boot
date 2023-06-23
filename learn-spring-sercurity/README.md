@@ -241,3 +241,34 @@ Spring Security 는 기본적으로 Form 인증을 사용한다. (username, pass
 5. JWKSource 사용하여 Encode
 
 
+
+# Spring Security에서 인증
+
+------
+
+
+
+1. AuthenticationManager : 인증 담당 인터페이스
+
+- 수많은 AuthenticationProvider과 상호작용 하여 인증을 진행한다.
+
+  - Authentication 객체 Return
+      
+      - Authentication 객체에 담을 수 있는것
+
+        1. 자격증명 (이름 , 패스워드)
+        2. 주체 (사용자에 관한 세부정보)
+        3. 권한       
+   
+
+- Authentication Manager를 거치기 전에는 자격증명만 담겨있고, Authentication Manager에서 인증에 성공하면 주체와 권한을 포함하게 된다. 
+
+
+2. UserDetailService : 사용자 데이터를 로딩하는 주요 인터페이스
+
+
+
+3. SecurityContextHolder : 인증에 성공하면 저장되는곳
+
+    - SecurityContextHolder > SecurityContext > Authentication > GrantedAuthority
+
