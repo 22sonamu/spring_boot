@@ -1,6 +1,14 @@
 package com.in28minutes.learnspringsercurity.jwt;
 
 
+import com.nimbusds.jose.JOSEException;
+import com.nimbusds.jose.KeySourceException;
+import com.nimbusds.jose.jwk.JWK;
+import com.nimbusds.jose.jwk.JWKSelector;
+import com.nimbusds.jose.jwk.JWKSet;
+import com.nimbusds.jose.jwk.RSAKey;
+import com.nimbusds.jose.jwk.source.JWKSource;
+import com.nimbusds.jose.proc.SecurityContext;
 import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,6 +22,8 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.oauth2.jwt.JwtDecoder;
+import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
@@ -22,6 +32,7 @@ import javax.sql.DataSource;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.security.interfaces.RSAPublicKey;
+import java.util.List;
 import java.util.UUID;
 
 import static org.springframework.security.config.Customizer.withDefaults;
@@ -93,7 +104,28 @@ public class JwtSecurityConfiguration {
     }
 
     @Bean
-    public RSAKey rsaKey(KeyPair keyPair){
+    public RSAKey rsaKey(KeyPair keyPair){ //2. RSA Object 만들기
         return new RSAKey.Builder((RSAPublicKey)keyPair.getPublic()).privateKey(keyPair.getPrivate()).keyID(UUID.randomUUID().toString()).build();
+    }
+
+    @Bean //3.JWKset 만들기
+    public JWKSource<SecurityContext> jwkSource(RSAKey rsaKey){
+        var jwkSet = new JWKSet(rsaKey);
+        return (jwkSelector, context) -> jwkSelector.select(jwkSet);
+
+
+//       return new JWKSource(){   //랑 같은뜻임
+//
+//            @Override
+//            public List<JWK> get(JWKSelector jwkSelector, SecurityContext context) throws KeySourceException {
+//                return jwkSelector.select(jwkSet);
+//            }
+//        };
+    }
+
+    @Bean //4. 공개 키 만들기
+    public JwtDecoder jwtDecoder(RSAKey rsaKey) throws JOSEException {
+        return NimbusJwtDecoder.withPublicKey(rsaKey.toRSAPublicKey())
+                .build();
     }
 }
