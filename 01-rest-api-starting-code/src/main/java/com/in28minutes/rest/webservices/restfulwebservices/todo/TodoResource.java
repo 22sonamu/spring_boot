@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+//@RestController
 public class TodoResource {
     private TodoService todoService;
     public TodoResource(TodoService todoService){

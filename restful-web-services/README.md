@@ -580,3 +580,20 @@ Optional이란 **null일수도 있는 객체**를 감싸는 일종의 Wrapper cl
     .filter(startsWithPredicate.or(lengthPredicate))
     .collect(Collectors.toList());
 ~~~
+
+# Spring Security (POST)
+
+
+-------
+
+Post 요청을 보낼 떄 , username과 password를 설정해도 403 Error가 뜬다.  
+요청을 보낼 때 마다 Spring Security가 해당 요청을 가로채기 때문이다. (FilterChain)  
+FilterChain의 필터 내용은 아래와 같다.
+
+1. 모든 요청이 인증되어야한다. 
+2. 인증되지 않았다면, 기본값으로 웹페이지가 나타난다. (https://loaclhost:8080/login)
+3. CSRF를 확인한다. CSRF가 해제되지 않았다면 POST 요청을 보낼 수 없다.
+
+
+- 따라서 h2-console을 사용할 때 설정한 것처럼 기본 Filter Chain을 Overrided해서 재정의하는 작업이 필요하다.
+

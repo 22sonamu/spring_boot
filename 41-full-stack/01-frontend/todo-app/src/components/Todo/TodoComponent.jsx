@@ -3,7 +3,7 @@ import { createTodoApi, retrieveTodoApi, updateTodoApi } from "./api/TodoApiServ
 import { useAuth } from "./Security/AuthContext"
 import { useEffect, useState } from "react"
 import {Formik, Form, Field, ErrorMessage} from 'formik'
-import {moment} from 'moment'
+
 
 export default function TodoComponent(){
 
@@ -56,8 +56,8 @@ export default function TodoComponent(){
             errors.description = '5자 이상 쓰세요'
         }
 
-        if(values.targetDate == null || values.targetDate ===''||!moment(values.targetDate).isValid()){
-            errors.targetDate = 'Enter a target date'
+        if(values.targetDate == null || values.targetDate ===''){
+            errors.targetDate = 'Enter a target date' 
         }
         return errors;
     }
