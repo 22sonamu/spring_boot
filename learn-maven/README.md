@@ -88,3 +88,26 @@ ex. Dependency Tree
 [INFO]    \- org.xmlunit:xmlunit-core:jar:2.9.1:test
 ~~~
 
+
+### 빌드 생명주기
+
+
+- Validate : 문제가 없나 확인
+- Compile : JAVA 코드 컴파일
+- Test : 단위 테스트 실행
+- Package : Jar 파일 생성
+- Integration Test : 통합 테스트
+- Verify : 검증
+- Install : Jar 파일을 target 폴더에 설치
+- Deply : 배포 (배포 설정 반영)
+
+
+### mvn 명령어
+
+- mvn clean : target 파일삭제
+- mvn compile : 소스 파일 컴파일
+- mvn test-compile : 소스 파일 + 테스트 파일 컴파일
+- mvn test : 유닛 테스트 실행
+- mvn package : jar 파일생성
+- mvn help : effective-pom 알려줌
+- mvn dependency : 의존성 tree
