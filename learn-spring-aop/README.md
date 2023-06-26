@@ -71,3 +71,14 @@ logger.info("Before aspect - method is called - {}", joinpoint);
 
 
 - Join Point : Advice 실행 인스턴스
+
+
+# AOP Annotations
+
+--------
+
+
+- @Before : method 가 call 되기 전에 실행
+- @After : method 실행 결과에 상관 없이 , method call 후 실행
+- @AfterReturning : method가 성공했을때만 실행
+- @AfterThrowing : method 가 exception 던졌을때
