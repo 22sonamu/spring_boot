@@ -111,3 +111,12 @@ ex. Dependency Tree
 - mvn package : jar 파일생성
 - mvn help : effective-pom 알려줌
 - mvn dependency : 의존성 tree
+
+### 스프링 버전 관리 규칙
+
+- version scheme - MAJOR.MINOR.PATCH[-MODIFIER]
+
+   - MAJOR : 업데이트 작업량이 매우 많은 경우
+   - MINOR : 업데이트 양이 적은 경우
+   - PATCH : 업데이트 작업량 아예 X
+   - MODIFIER : RELEASE , MileStone(M1, M2 ...), Release candidates(RC1, RC2...) 등 표시
