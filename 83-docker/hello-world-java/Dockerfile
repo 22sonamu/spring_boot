@@ -1,4 +1,15 @@
+FROM maven:3.8.6-openjdk-18-slim AS build
+WORKDIR /home/app
+
+COPY ./pom.xml /home/app/pom.xml
+COPY ./src/main/java/com/in28minutes/rest/webservices/restfulwebservices/RestfulWebServicesApplication.java /home/app/src/main/java/com/in28minutes/rest/webservices/restfulwebservices/RestfulWebServicesApplication.java
+
+RUN mvn -f /home/app/pom.xml clean package # 가장 시간이 오래 걸림(모든 의존성 다운로드)
+
+COPY . /home/app
+RUN mvn -f /home/app/pom.xml clean package
+
 FROM openjdk:18.0-slim
-COPY target/*.jar app.jar
 EXPOSE 5000
-ENTRYPOINT ["java","-jar","/app.jar"]
+COPY --from=build /home/app/target/*.jar app.jar
+ENTRYPOINT [ "sh", "-c", "java -jar /app.jar" ]
